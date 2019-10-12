@@ -1,86 +1,80 @@
 package top.moxingwang.agent;
 
-import jdk.internal.org.objectweb.asm.*;
-import jdk.internal.org.objectweb.asm.util.TraceClassVisitor;
-
-import java.io.PrintWriter;
+import org.objectweb.asm.*;
 
 /**
  * @see https://blog.csdn.net/u014490683/article/details/22745799
  * @see https://zhuanlan.zhihu.com/p/71762514
  */
 
-public class EnhancerAdapter extends ClassVisitor {
+public class EnhancerAdapter extends ClassVisitor implements Opcodes {
 
-    private final Integer ACC_ABSTRACT = 0x0400;
-    private final Integer ACC_FINAL = 0x0010;
 
-    private final TraceClassVisitor tracer;
+    private String owner;
+    private boolean isInterface;
+    private String filedName = "UDASMCN";
+    private int acc = Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC + Opcodes.ACC_FINAL;
+    private boolean isPresent = false;
 
-    public EnhancerAdapter(ClassVisitor cv) {
-        super(Opcodes.ASM5, cv);
-        PrintWriter pw = new PrintWriter(System.out);
-        tracer = new TraceClassVisitor(cv, pw);
+    private String methodName;
+
+    public EnhancerAdapter(ClassVisitor classVisitor) {
+        super(ASM7, classVisitor);
     }
 
+    public AnnotationVisitor visitAnnotation(String descriptor, boolean visible) {
+        System.out.println("发现注解" + descriptor);
+        return this.cv != null ? this.cv.visitAnnotation(descriptor, visible) : null;
+    }
 
-    public AnnotationVisitor visitTypeAnnotation(int var1, TypePath var2, String var3, boolean var4) {
+    public AnnotationVisitor visitTypeAnnotation(int typeRef, TypePath typePath, String descriptor, boolean visible) {
+        System.out.println("发现注解-----------------" + descriptor);
+
         if (this.api < 327680) {
-            throw new RuntimeException();
+            throw new UnsupportedOperationException("This feature requires ASM5");
         } else {
-            return this.cv != null ? this.cv.visitTypeAnnotation(var1, var2, var3, var4) : null;
+            return this.cv != null ? this.cv.visitTypeAnnotation(typeRef, typePath, descriptor, visible) : null;
         }
-    }
-    public AnnotationVisitor visitAnnotation(String var1, boolean var2) {
-        System.out.println("注解visit进入annotation test +" + var1 + "++" + var2);
-        return this.cv != null ? this.cv.visitAnnotation(var1, var2) : null;
     }
 
     @Override
-    public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {
-
-        /*final MethodVisitor mv = tracer.visitMethod(access, name, desc, signature, exceptions);
-        if (isIgnore(mv, access, name)) {
-            return mv;
-        }
-        return new EnhancerMethodAdapter(mv, access, name, desc);*/
-
-
-        MethodVisitor mv = cv.visitMethod(access, name, desc, signature, exceptions);
-        MethodVisitor wrappedMv = mv;
-        if (mv != null) {
-            wrappedMv = new EnhancerMethodAdapter(mv, access, name, desc);
-        }
-        return wrappedMv;
+    public void visit(int version, int access, String name, String signature, String superName, String[] interfaces) {
+        super.visit(version, access, name, signature, superName, interfaces);
+        owner = name;
+        isInterface = (access & ACC_INTERFACE) != 0;
     }
 
     @Override
+    public FieldVisitor visitField(int access, String name, String descriptor, String signature, Object value) {
+        if (name.equals(filedName)) {
+            isPresent = true;
+        }
+        return super.visitField(access, name, descriptor, signature, value);
+    }
+
+    @Override
+    public MethodVisitor visitMethod(int access, String name, String descriptor, String signature,
+                                     String[] exceptions) {
+        MethodVisitor mv = cv.visitMethod(access, name, descriptor, signature, exceptions);
+
+        if (!isInterface && mv != null && !name.equals("<init>") && !name.equals("<clinit>")) {
+            methodName = name;
+            EnhancerMethodAdapter at = new EnhancerMethodAdapter(mv, access, name, descriptor);
+            return at;
+        }
+
+        return mv;
+    }
+
     public void visitEnd() {
-        System.out.println(tracer.p.getText());
-        super.visitEnd();
+        if (!isInterface) {
+            FieldVisitor fv = cv.visitField(acc, filedName, "Ljava/lang/String;", null, owner);
+            if (fv != null) {
+                fv.visitEnd();
+            }
+        }
+        cv.visitEnd();
     }
 
-    /**
-     * 忽略构造方法、类加载初始化方法，final方法和 abstract 方法
-     *
-     * @param mv
-     * @param access
-     * @param methodName
-     * @return
-     */
-    private boolean isIgnore(MethodVisitor mv, int access, String methodName) {
-        return null == mv
-                || isAbstract(access)
-                || isFinalMethod(access)
-                || "<clinit>".equals(methodName)
-                || "<init>".equals(methodName);
-    }
 
-    private boolean isAbstract(int access) {
-        return (ACC_ABSTRACT & access) == ACC_ABSTRACT;
-    }
-
-    private boolean isFinalMethod(int methodAccess) {
-        return (ACC_FINAL & methodAccess) == ACC_FINAL;
-    }
 }

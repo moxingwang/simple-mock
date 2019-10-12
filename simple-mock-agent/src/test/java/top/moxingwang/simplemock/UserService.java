@@ -1,12 +1,10 @@
 package top.moxingwang.simplemock;
 
-import com.sun.istack.internal.NotNull;
+import top.moxingwang.agent.api.SPI;
 
-import javax.xml.ws.ServiceMode;
-
-@ServiceMode
+//@SPI
 public class UserService {
-    @NotNull
+    @SPI
     public void userInfo() {
         System.out.println("user info method------------------");
     }
