@@ -2,7 +2,6 @@ package top.moxingwang.agent;
 
 import jdk.internal.org.objectweb.asm.ClassVisitor;
 import jdk.internal.org.objectweb.asm.MethodVisitor;
-import jdk.internal.org.objectweb.asm.Opcodes;
 import jdk.internal.org.objectweb.asm.util.TraceClassVisitor;
 
 import java.io.PrintWriter;
@@ -20,7 +19,7 @@ public class EnhancerAdapter extends ClassVisitor {
     private final TraceClassVisitor tracer;
 
     public EnhancerAdapter(ClassVisitor cv) {
-        super(Opcodes.ASM5, cv);
+        super(Opcodes.ASM6, cv);
         PrintWriter pw = new PrintWriter(System.out);
         tracer = new TraceClassVisitor(cv, pw);
     }
