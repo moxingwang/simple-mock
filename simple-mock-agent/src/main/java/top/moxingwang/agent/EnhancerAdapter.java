@@ -1,8 +1,6 @@
 package top.moxingwang.agent;
 
-import jdk.internal.org.objectweb.asm.ClassVisitor;
-import jdk.internal.org.objectweb.asm.MethodVisitor;
-import jdk.internal.org.objectweb.asm.Opcodes;
+import jdk.internal.org.objectweb.asm.*;
 import jdk.internal.org.objectweb.asm.util.TraceClassVisitor;
 
 import java.io.PrintWriter;
@@ -23,6 +21,19 @@ public class EnhancerAdapter extends ClassVisitor {
         super(Opcodes.ASM5, cv);
         PrintWriter pw = new PrintWriter(System.out);
         tracer = new TraceClassVisitor(cv, pw);
+    }
+
+
+    public AnnotationVisitor visitTypeAnnotation(int var1, TypePath var2, String var3, boolean var4) {
+        if (this.api < 327680) {
+            throw new RuntimeException();
+        } else {
+            return this.cv != null ? this.cv.visitTypeAnnotation(var1, var2, var3, var4) : null;
+        }
+    }
+    public AnnotationVisitor visitAnnotation(String var1, boolean var2) {
+        System.out.println("注解visit进入annotation test +" + var1 + "++" + var2);
+        return this.cv != null ? this.cv.visitAnnotation(var1, var2) : null;
     }
 
     @Override
