@@ -38,11 +38,7 @@ public class EnhancerAdapter extends ClassVisitor {
         MethodVisitor mv = cv.visitMethod(access, name, desc, signature, exceptions);
         MethodVisitor wrappedMv = mv;
         if (mv != null) {
-            // 对于 "operation" 方法
-            if (name.equals("operation")) {
-                // 使用自定义 MethodVisitor，实际改写方法内容
-                wrappedMv = new EnhancerMethodAdapter(mv, access, name, desc);
-            }
+            wrappedMv = new EnhancerMethodAdapter(mv, access, name, desc);
         }
         return wrappedMv;
     }
