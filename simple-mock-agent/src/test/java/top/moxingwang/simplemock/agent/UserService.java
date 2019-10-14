@@ -1,6 +1,7 @@
 package top.moxingwang.simplemock.agent;
 
-import top.moxingwang.simplemock.agent.api.SPI;
+
+import top.moxingwang.simplemock.core.annotation.SPI;
 
 //@SPI
 public class UserService {

@@ -11,6 +11,7 @@
 
 
     <modules>
+        <module>simple-mock-core</module>
         <module>simple-mock-agent</module>
         <module>simple-mock-client</module>
     </modules>
