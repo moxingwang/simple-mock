@@ -33,7 +33,6 @@ hs_err_pid*
 .DS_Store
 *.iml
 *.iml/
-*.log
 /conf/
 /disconf/
 p-trade-oc.iml
@@ -41,8 +40,7 @@ launch.json
 settings.json
 .factorypath
 /.vscode/
-.project
 .classpath
-.settings/
 target/
 .vscode/
+.iml
