@@ -1,16 +1,14 @@
-package top.moxingwang.agent;
+package top.moxingwang.simplemock.agent;
 
-
-import org.objectweb.asm.MethodVisitor;
-import org.objectweb.asm.commons.AdviceAdapter;
+import jdk.internal.org.objectweb.asm.MethodVisitor;
+import jdk.internal.org.objectweb.asm.commons.AdviceAdapter;
 
 public class EnhancerMethodAdapter extends AdviceAdapter {
 
     private final String name;
 
-
     protected EnhancerMethodAdapter(MethodVisitor mv, int access, String name, String desc) {
-        super(ASM7, mv, access, name, desc);
+        super(jdk.internal.org.objectweb.asm.Opcodes.ASM5, mv, access, name, desc);
         this.name = name;
     }
 

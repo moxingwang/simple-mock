@@ -1,11 +1,9 @@
-package top.moxingwang.agent;
+package top.moxingwang.simplemock.agent;
 
 import jdk.internal.org.objectweb.asm.ClassReader;
 import jdk.internal.org.objectweb.asm.ClassVisitor;
 import jdk.internal.org.objectweb.asm.ClassWriter;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.lang.instrument.Instrumentation;
 
 public class Agent {

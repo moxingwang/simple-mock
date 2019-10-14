@@ -1,4 +1,4 @@
-package top.moxingwang.agent;
+package top.moxingwang.simplemock.agent;
 
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;

@@ -46,7 +46,7 @@
                         </manifest>
                         <manifestEntries>
                             <Premain-Class>
-                                top.moxingwang.agent.Agent
+                                Agent
                             </Premain-Class>
                         </manifestEntries>
                     </archive>

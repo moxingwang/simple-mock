@@ -1,6 +1,6 @@
-package top.moxingwang.simplemock;
+package top.moxingwang.simplemock.agent;
 
-import top.moxingwang.agent.api.SPI;
+import top.moxingwang.simplemock.agent.api.SPI;
 
 //@SPI
 public class UserService {

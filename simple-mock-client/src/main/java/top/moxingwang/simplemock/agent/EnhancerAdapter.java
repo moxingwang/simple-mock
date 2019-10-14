@@ -1,4 +1,4 @@
-package top.moxingwang.agent;
+package top.moxingwang.simplemock.agent;
 
 import jdk.internal.org.objectweb.asm.ClassVisitor;
 import jdk.internal.org.objectweb.asm.MethodVisitor;
