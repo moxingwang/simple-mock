@@ -51,7 +51,7 @@
                         </manifest>
                         <manifestEntries>
                             <Premain-Class>
-                                Agent
+                                top.moxingwang.simplemock.agent.Agent
                             </Premain-Class>
                         </manifestEntries>
                     </archive>
