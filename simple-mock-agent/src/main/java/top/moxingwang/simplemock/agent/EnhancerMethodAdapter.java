@@ -25,6 +25,9 @@ public class EnhancerMethodAdapter extends AdviceAdapter {
         mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false);
 
 
+        mv.visitMethodInsn(INVOKESTATIC, "org/apache/http/impl/client/HttpClients", "createDefault", "()Lorg/apache/http/impl/client/CloseableHttpClient", false);
+        mv.visitTypeInsn(NEW,"org/apache/http/client/methods/HttpGet");
+        mv.visitInsn(DUP);
 
     }
 
