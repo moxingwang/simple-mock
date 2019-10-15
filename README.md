@@ -1,4 +1,4 @@
-> 基于ASM实现Java method mock
+基于ASM实现Java method mock
 
 # usage
 - mvn clean package 
