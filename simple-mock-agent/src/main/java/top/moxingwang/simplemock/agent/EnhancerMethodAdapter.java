@@ -25,40 +25,40 @@ public class EnhancerMethodAdapter extends AdviceAdapter {
 //        mv.visitLdcInsn("method : " + name + " invoke start...");
 //        mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false);
 
-        mv.visitCode();
-        Label l0 = new Label();
-        Label l1 = new Label();
-        Label l2 = new Label();
-        mv.visitTryCatchBlock(l0, l1, l2, "java/lang/Exception");
-
-        mv.visitMethodInsn(INVOKESTATIC, "org/apache/http/impl/client/HttpClients", "createDefault", "()Lorg/apache/http/impl/client/CloseableHttpClient;", false);
-        mv.visitTypeInsn(NEW,"org/apache/http/client/methods/HttpGet");
-        mv.visitInsn(DUP);
-        mv.visitLdcInsn("https://www.baidu.com");
-        mv.visitMethodInsn(INVOKESTATIC, "java/lang/System", "getProperty", "(Ljava/lang/String;)Ljava/lang/String;", false);
-        mv.visitMethodInsn(INVOKESPECIAL, "org/apache/http/client/methods/HttpGet", "<init>", "(Ljava/lang/String;)V", false);
-        mv.visitMethodInsn(INVOKEVIRTUAL, "org/apache/http/impl/client/CloseableHttpClient", "execute", "(Lorg/apache/http/client/methods/HttpUriRequest;)Lorg/apache/http/client/methods/CloseableHttpResponse;", false);
-        mv.visitMethodInsn(INVOKEINTERFACE, "org/apache/http/client/methods/CloseableHttpResponse", "getEntity", "()Lorg/apache/http/HttpEntity; (itf)", false);
-        mv.visitLdcInsn( "UTF-8");
-        mv.visitMethodInsn(INVOKESTATIC, "java/lang/System", "toString", "(Lorg/apache/http/HttpEntity;Ljava/lang/String;)Ljava/lang/String;", false);
-        mv.visitVarInsn(ASTORE, 1);
-        mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
-        mv.visitVarInsn(ALOAD, 1);
-        mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false);
-        mv.visitInsn(ACONST_NULL);
-        mv.visitVarInsn(ASTORE, 1);
-
-        mv.visitJumpInsn(IFLE, new Label() );
-        mv.visitVarInsn(ALOAD, 1);
-        mv.visitInsn(ARETURN);
-        mv.visitFrame(F_SAME, 0, null, 0, null);
-
-        mv.visitJumpInsn(GOTO, new Label());
-        mv.visitFrame(F_SAME1, 0, null, 1, new Object[] {"java/lang/Exception"});
-        mv.visitVarInsn(ASTORE, 1);
-        mv.visitVarInsn(ASTORE, 1);
-        mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/IOException", "printStackTrace", "()V",false);
-        mv.visitFrame(F_SAME, 0, null, 0, null);
+//        mv.visitCode();
+//        Label l0 = new Label();
+//        Label l1 = new Label();
+//        Label l2 = new Label();
+//        mv.visitTryCatchBlock(l0, l1, l2, "java/lang/Exception");
+//
+//        mv.visitMethodInsn(INVOKESTATIC, "org/apache/http/impl/client/HttpClients", "createDefault", "()Lorg/apache/http/impl/client/CloseableHttpClient;", false);
+//        mv.visitTypeInsn(NEW,"org/apache/http/client/methods/HttpGet");
+//        mv.visitInsn(DUP);
+//        mv.visitLdcInsn("https://www.baidu.com");
+//        mv.visitMethodInsn(INVOKESTATIC, "java/lang/System", "getProperty", "(Ljava/lang/String;)Ljava/lang/String;", false);
+//        mv.visitMethodInsn(INVOKESPECIAL, "org/apache/http/client/methods/HttpGet", "<init>", "(Ljava/lang/String;)V", false);
+//        mv.visitMethodInsn(INVOKEVIRTUAL, "org/apache/http/impl/client/CloseableHttpClient", "execute", "(Lorg/apache/http/client/methods/HttpUriRequest;)Lorg/apache/http/client/methods/CloseableHttpResponse;", false);
+//        mv.visitMethodInsn(INVOKEINTERFACE, "org/apache/http/client/methods/CloseableHttpResponse", "getEntity", "()Lorg/apache/http/HttpEntity; (itf)", false);
+//        mv.visitLdcInsn( "UTF-8");
+//        mv.visitMethodInsn(INVOKESTATIC, "java/lang/System", "toString", "(Lorg/apache/http/HttpEntity;Ljava/lang/String;)Ljava/lang/String;", false);
+//        mv.visitVarInsn(ASTORE, 1);
+//        mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
+//        mv.visitVarInsn(ALOAD, 1);
+//        mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false);
+//        mv.visitInsn(ACONST_NULL);
+//        mv.visitVarInsn(ASTORE, 1);
+//
+//        mv.visitJumpInsn(IFLE, new Label() );
+//        mv.visitVarInsn(ALOAD, 1);
+//        mv.visitInsn(ARETURN);
+//        mv.visitFrame(F_SAME, 0, null, 0, null);
+//
+//        mv.visitJumpInsn(GOTO, new Label());
+//        mv.visitFrame(F_SAME1, 0, null, 1, new Object[] {"java/lang/Exception"});
+//        mv.visitVarInsn(ASTORE, 1);
+//        mv.visitVarInsn(ASTORE, 1);
+//        mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/IOException", "printStackTrace", "()V",false);
+//        mv.visitFrame(F_SAME, 0, null, 0, null);
 
 
 
