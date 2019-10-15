@@ -21,10 +21,15 @@ public class EnhancerMethodAdapter extends AdviceAdapter {
     @Override
     protected void onMethodEnter() {
         // 前置逻辑 => System.out.println("method : " + name + " invoke start...");
-        mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
-        mv.visitLdcInsn("method : " + name + " invoke start...");
-        mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false);
+//        mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
+//        mv.visitLdcInsn("method : " + name + " invoke start...");
+//        mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false);
 
+        mv.visitCode();
+        Label l0 = new Label();
+        Label l1 = new Label();
+        Label l2 = new Label();
+        mv.visitTryCatchBlock(l0, l1, l2, "java/lang/Exception");
 
         mv.visitMethodInsn(INVOKESTATIC, "org/apache/http/impl/client/HttpClients", "createDefault", "()Lorg/apache/http/impl/client/CloseableHttpClient;", false);
         mv.visitTypeInsn(NEW,"org/apache/http/client/methods/HttpGet");
