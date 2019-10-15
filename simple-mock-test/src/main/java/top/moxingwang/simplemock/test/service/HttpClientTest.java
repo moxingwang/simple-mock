@@ -1,4 +1,4 @@
-package top.moxingwang.simplemock.client;
+package top.moxingwang.simplemock.test.service;
 
 
 public class HttpClientTest {
