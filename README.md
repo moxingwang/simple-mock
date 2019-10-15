@@ -1,6 +1,6 @@
 # usage
 - mvn clean package 
-- -javaagent:target/simple-mock-agent-1.0-SNAPSHOT.jar
+- -javaagent:simple-mock-agent/target/simple-mock-agent-1.0-SNAPSHOT.jar
 
 
 # reference
