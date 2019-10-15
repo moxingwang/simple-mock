@@ -6,7 +6,8 @@ import top.moxingwang.simplemock.core.annotation.SPI;
 //@SPI
 public class UserService {
     @SPI
-    public void userInfo() {
+    public String userInfo() {
         System.out.println("user info method------------------");
+        return "OK";
     }
 }
