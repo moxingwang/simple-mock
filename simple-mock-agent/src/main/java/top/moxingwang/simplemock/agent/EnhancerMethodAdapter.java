@@ -23,6 +23,9 @@ public class EnhancerMethodAdapter extends AdviceAdapter {
         mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
         mv.visitLdcInsn("method : " + name + " invoke start...");
         mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false);
+
+
+
     }
 
     /**
