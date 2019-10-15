@@ -1,6 +1,7 @@
 package top.moxingwang.simplemock.agent;
 
 import org.objectweb.asm.*;
+import top.moxingwang.simplemock.core.annotation.SimpleMock;
 
 /**
  * @see https://blog.csdn.net/u014490683/article/details/22745799
@@ -16,6 +17,8 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
     private int acc = Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC + Opcodes.ACC_FINAL;
     private boolean isPresent = false;
 
+    private boolean isMockAnnotationType = false;
+
     private String methodName;
 
     public EnhancerAdapter(ClassVisitor classVisitor) {
@@ -23,15 +26,19 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
     }
 
     public AnnotationVisitor visitAnnotation(String descriptor, boolean visible) {
-        System.out.println("发现注解" + descriptor);
+        if (descriptor.contains(SimpleMock.class.toString().replace(".","/"))) {
+            isMockAnnotationType = true;
+        }
         return this.cv != null ? this.cv.visitAnnotation(descriptor, visible) : null;
     }
 
     public AnnotationVisitor visitTypeAnnotation(int typeRef, TypePath typePath, String descriptor, boolean visible) {
-        System.out.println("发现注解-----------------" + descriptor);
+        if (descriptor.contains(SimpleMock.class.toString().replace(".","/"))) {
+            isMockAnnotationType = true;
+        }
 
-        if (this.api < 327680) {
-            throw new UnsupportedOperationException("This feature requires ASM5");
+        if (this.api < ASM6) {
+            throw new UnsupportedOperationException("This feature requires ASM6");
         } else {
             return this.cv != null ? this.cv.visitTypeAnnotation(typeRef, typePath, descriptor, visible) : null;
         }
@@ -57,7 +64,7 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
                                      String[] exceptions) {
         MethodVisitor mv = cv.visitMethod(access, name, descriptor, signature, exceptions);
 
-        if (!isInterface && mv != null && !name.equals("<init>") && !name.equals("<clinit>")) {
+        if (isMockAnnotationType && !isInterface && mv != null && !name.equals("<init>") && !name.equals("<clinit>")) {
             methodName = name;
             EnhancerMethodAdapter at = new EnhancerMethodAdapter(mv, access, name, descriptor);
             return at;
@@ -67,7 +74,7 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
     }
 
     public void visitEnd() {
-        if (!isInterface) {
+        if (isMockAnnotationType && !isInterface) {
             FieldVisitor fv = cv.visitField(acc, filedName, "Ljava/lang/String;", null, owner);
             if (fv != null) {
                 fv.visitEnd();

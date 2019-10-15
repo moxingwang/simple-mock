@@ -21,7 +21,8 @@ public class AgentTransformer implements ClassFileTransformer {
 
             return cw.toByteArray();
         } catch (IOException e) {
-            e.printStackTrace();
+//            System.out.println("异常"+className);
+//            e.printStackTrace();
         }
         return null;
     }
