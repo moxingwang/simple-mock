@@ -26,6 +26,8 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
     }
 
     public AnnotationVisitor visitAnnotation(String descriptor, boolean visible) {
+        System.out.println(descriptor);
+
         if (descriptor.contains(SimpleMock.class.toString().replace(".","/"))) {
             isMockAnnotationType = true;
         }
@@ -33,6 +35,7 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
     }
 
     public AnnotationVisitor visitTypeAnnotation(int typeRef, TypePath typePath, String descriptor, boolean visible) {
+        System.out.println(typeRef+typePath.toString()+descriptor);
         if (descriptor.contains(SimpleMock.class.toString().replace(".","/"))) {
             isMockAnnotationType = true;
         }
