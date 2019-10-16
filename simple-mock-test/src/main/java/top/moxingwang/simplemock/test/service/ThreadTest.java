@@ -14,49 +14,66 @@ public class ThreadTest {
         System.out.println("结果" + JSON.toJSONString(new ThreadTest().getInfo()));
     }
 
+    //Object
     public Map<String, String> getInfo() {
-        MethodSpiResponseDTO mockResponse = mock(Thread.currentThread().getStackTrace()[1]);
-        if (2 == mockResponse.getType()) {
-            return JSONObject.parseObject(mockResponse.getResponse().toString().getBytes(), mockResponse.getMethodReturnClass());
+        if (null != System.getProperty(top.moxingwang.simplemock.core.SimpleMockConstant.SIMPLE_MOCK_VM_SERVER_URL)) {
+            MethodSpiResponseDTO mockResponse = getMockData(Thread.currentThread().getStackTrace()[1]);
+            if (null != mockResponse.getResponse()) {
+                return JSONObject.parseObject(mockResponse.getResponse().getBytes(), mockResponse.getMethodReturnClass());
+            }
         }
-
-
-        System.out.println(1);
         return null;
     }
 
-    public MethodSpiResponseDTO mock(StackTraceElement stackTraceElement) {
-        MethodSpiResponseDTO responseDTO = new MethodSpiResponseDTO(0);
+    //String
+    public String getString() {
+        if (null != System.getProperty(top.moxingwang.simplemock.core.SimpleMockConstant.SIMPLE_MOCK_VM_SERVER_URL)) {
+            MethodSpiResponseDTO mockResponse = getMockData(Thread.currentThread().getStackTrace()[1]);
+            if (null != mockResponse.getResponse()) {
+                return mockResponse.getResponse();
+            }
+        }
+        return null;
+    }
+
+    //Integer
+    public Integer getInteger() {
+        if (null != System.getProperty(top.moxingwang.simplemock.core.SimpleMockConstant.SIMPLE_MOCK_VM_SERVER_URL)) {
+            MethodSpiResponseDTO mockResponse = getMockData(Thread.currentThread().getStackTrace()[1]);
+            if (null != mockResponse.getResponse()) {
+                return Integer.valueOf(mockResponse.getResponse());
+            }
+        }
+        return null;
+    }
+
+    //Integer
+    public int getInt() {
+        if (null != System.getProperty(top.moxingwang.simplemock.core.SimpleMockConstant.SIMPLE_MOCK_VM_SERVER_URL)) {
+            MethodSpiResponseDTO mockResponse = getMockData(Thread.currentThread().getStackTrace()[1]);
+            if (null != mockResponse.getResponse()) {
+                return Integer.valueOf(mockResponse.getResponse());
+            }
+        }
+        return 1;
+    }
+
+
+    public MethodSpiResponseDTO getMockData(StackTraceElement stackTraceElement) {
+        MethodSpiResponseDTO responseDTO = new MethodSpiResponseDTO();
         try {
             Class cl = Class.forName(stackTraceElement.getClassName());
             for (Method method : cl.getMethods()) {
-                //调用mock server
-
                 if (method.getName().equals(stackTraceElement.getMethodName())) {
+                    //调用mock server
                     String mockUrl = System.getProperty(top.moxingwang.simplemock.core.SimpleMockConstant.SIMPLE_MOCK_VM_SERVER_URL) + method.getClass().getName() + "." + method.getName();
                     String str = org.apache.http.util.EntityUtils.toString(org.apache.http.impl.client.HttpClients.createDefault().execute(new org.apache.http.client.methods.HttpGet(mockUrl)).getEntity(), "UTF-8");
-
-
-                    String returnMethodName = method.getReturnType().getName();
-                    if ("void".equals(returnMethodName)) {
-                        responseDTO.setType(1);
-                        return responseDTO;
-                    }
-                    if (String.class.getName().equals(returnMethodName)) {
-                        responseDTO.setType(2);
-                        responseDTO.setMethodReturnClass(String.class);
-                        responseDTO.setResponse(str);
-                        return responseDTO;
-                    }
-
-                    responseDTO.setType(2);
 
                     responseDTO.setMethodReturnClass(method.getReturnType());
                     responseDTO.setResponse(str);
                     return responseDTO;
                 }
             }
-            System.out.println(1);
         } catch (Exception e) {
             e.printStackTrace();
         }
