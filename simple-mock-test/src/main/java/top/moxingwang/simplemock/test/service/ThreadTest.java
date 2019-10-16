@@ -18,8 +18,9 @@ public class ThreadTest {
     public Map<String, String> getInfo() {
         if (null != System.getProperty(top.moxingwang.simplemock.core.SimpleMockConstant.SIMPLE_MOCK_VM_SERVER_URL)) {
             MethodSpiResponseDTO mockResponse = getMockData(Thread.currentThread().getStackTrace()[1]);
-            if (null != mockResponse.getResponse()) {
-                return JSONObject.parseObject(mockResponse.getResponse().getBytes(), mockResponse.getMethodReturnClass());
+            String response = mockResponse.getResponse();
+            if (null != response) {
+                return JSONObject.parseObject(response.getBytes(), mockResponse.getMethodReturnClass());
             }
         }
         return null;
@@ -29,8 +30,9 @@ public class ThreadTest {
     public String getString() {
         if (null != System.getProperty(top.moxingwang.simplemock.core.SimpleMockConstant.SIMPLE_MOCK_VM_SERVER_URL)) {
             MethodSpiResponseDTO mockResponse = getMockData(Thread.currentThread().getStackTrace()[1]);
-            if (null != mockResponse.getResponse()) {
-                return mockResponse.getResponse();
+            String response = mockResponse.getResponse();
+            if (null != response) {
+                return response;
             }
         }
         return null;
@@ -40,8 +42,9 @@ public class ThreadTest {
     public Integer getInteger() {
         if (null != System.getProperty(top.moxingwang.simplemock.core.SimpleMockConstant.SIMPLE_MOCK_VM_SERVER_URL)) {
             MethodSpiResponseDTO mockResponse = getMockData(Thread.currentThread().getStackTrace()[1]);
-            if (null != mockResponse.getResponse()) {
-                return Integer.valueOf(mockResponse.getResponse());
+            String response = mockResponse.getResponse();
+            if (null != response) {
+                return Integer.valueOf(response);
             }
         }
         return null;
@@ -51,8 +54,9 @@ public class ThreadTest {
     public int getInt() {
         if (null != System.getProperty(top.moxingwang.simplemock.core.SimpleMockConstant.SIMPLE_MOCK_VM_SERVER_URL)) {
             MethodSpiResponseDTO mockResponse = getMockData(Thread.currentThread().getStackTrace()[1]);
-            if (null != mockResponse.getResponse()) {
-                return Integer.valueOf(mockResponse.getResponse());
+            String response = mockResponse.getResponse();
+            if (null != response) {
+                return Integer.valueOf(response);
             }
         }
         return 1;
