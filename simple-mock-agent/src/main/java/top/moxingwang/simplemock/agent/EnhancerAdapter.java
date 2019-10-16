@@ -26,6 +26,8 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
     }
 
     public AnnotationVisitor visitAnnotation(String descriptor, boolean visible) {
+        System.out.println("访问注解"+descriptor);
+
         System.out.println(descriptor);
 
         if (descriptor.contains(SimpleMock.class.toString().replace(".","/"))) {
@@ -35,7 +37,7 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
     }
 
     public AnnotationVisitor visitTypeAnnotation(int typeRef, TypePath typePath, String descriptor, boolean visible) {
-        System.out.println(typeRef+typePath.toString()+descriptor);
+        System.out.println("访问注解"+descriptor);
         if (descriptor.contains(SimpleMock.class.toString().replace(".","/"))) {
             isMockAnnotationType = true;
         }
@@ -65,6 +67,7 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
     @Override
     public MethodVisitor visitMethod(int access, String name, String descriptor, String signature,
                                      String[] exceptions) {
+        System.out.println("访问方法"+name+descriptor);
         MethodVisitor mv = cv.visitMethod(access, name, descriptor, signature, exceptions);
 
         if (isMockAnnotationType && !isInterface && mv != null && !name.equals("<init>") && !name.equals("<clinit>")) {
