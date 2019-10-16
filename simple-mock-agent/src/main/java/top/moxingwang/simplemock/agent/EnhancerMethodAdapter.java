@@ -21,6 +21,8 @@ public class EnhancerMethodAdapter extends AdviceAdapter {
     @Override
     protected void onMethodEnter() {
         // 前置逻辑 => System.out.println("method : " + name + " invoke start...");
+        Label label = new Label();
+        mv.visitLineNumber(1,label);
 //        mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
 //        mv.visitLocalVariable();
 //        mv.visitLdcInsn("method : " + name + " invoke start...");

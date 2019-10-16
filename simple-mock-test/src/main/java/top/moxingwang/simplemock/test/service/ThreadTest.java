@@ -26,40 +26,40 @@ public class ThreadTest {
         return null;
     }
 
-    //String
-    public String getString() {
-        if (null != System.getProperty(top.moxingwang.simplemock.core.SimpleMockConstant.SIMPLE_MOCK_VM_SERVER_URL)) {
-            MethodSpiResponseDTO mockResponse = MockApi.getMockData(Thread.currentThread().getStackTrace()[1]);
-            String response = mockResponse.getResponse();
-            if (null != response) {
-                return response;
-            }
-        }
-        return null;
-    }
-
-    //Integer
-    public Integer getInteger() {
-        if (null != System.getProperty(top.moxingwang.simplemock.core.SimpleMockConstant.SIMPLE_MOCK_VM_SERVER_URL)) {
-            MethodSpiResponseDTO mockResponse = MockApi.getMockData(Thread.currentThread().getStackTrace()[1]);
-            String response = mockResponse.getResponse();
-            if (null != response) {
-                return Integer.valueOf(response);
-            }
-        }
-        return null;
-    }
-
-    //Integer
-    public int getInt() {
-        if (null != System.getProperty(top.moxingwang.simplemock.core.SimpleMockConstant.SIMPLE_MOCK_VM_SERVER_URL)) {
-            MethodSpiResponseDTO mockResponse = MockApi.getMockData(Thread.currentThread().getStackTrace()[1]);
-            String response = mockResponse.getResponse();
-            if (null != response) {
-                return Integer.valueOf(response);
-            }
-        }
-        return 1;
-    }
+//    //String
+//    public String getString() {
+//        if (null != System.getProperty(top.moxingwang.simplemock.core.SimpleMockConstant.SIMPLE_MOCK_VM_SERVER_URL)) {
+//            MethodSpiResponseDTO mockResponse = MockApi.getMockData(Thread.currentThread().getStackTrace()[1]);
+//            String response = mockResponse.getResponse();
+//            if (null != response) {
+//                return response;
+//            }
+//        }
+//        return null;
+//    }
+//
+//    //Integer
+//    public Integer getInteger() {
+//        if (null != System.getProperty(top.moxingwang.simplemock.core.SimpleMockConstant.SIMPLE_MOCK_VM_SERVER_URL)) {
+//            MethodSpiResponseDTO mockResponse = MockApi.getMockData(Thread.currentThread().getStackTrace()[1]);
+//            String response = mockResponse.getResponse();
+//            if (null != response) {
+//                return Integer.valueOf(response);
+//            }
+//        }
+//        return null;
+//    }
+//
+//    //Integer
+//    public int getInt() {
+//        if (null != System.getProperty(top.moxingwang.simplemock.core.SimpleMockConstant.SIMPLE_MOCK_VM_SERVER_URL)) {
+//            MethodSpiResponseDTO mockResponse = MockApi.getMockData(Thread.currentThread().getStackTrace()[1]);
+//            String response = mockResponse.getResponse();
+//            if (null != response) {
+//                return Integer.valueOf(response);
+//            }
+//        }
+//        return 1;
+//    }
 
 }
