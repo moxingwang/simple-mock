@@ -11,8 +11,17 @@ public class MethodSpiResponseDTO<T> implements Serializable {
      */
     private int type;
     private T response;
+    private Class methodReturnClass;
 
     public MethodSpiResponseDTO() {
+    }
+
+    public Class getMethodReturnClass() {
+        return methodReturnClass;
+    }
+
+    public void setMethodReturnClass(Class methodReturnClass) {
+        this.methodReturnClass = methodReturnClass;
     }
 
     public MethodSpiResponseDTO(int type) {

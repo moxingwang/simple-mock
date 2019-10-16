@@ -1,26 +1,28 @@
 package top.moxingwang.simplemock.test.service;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import top.moxingwang.simplemock.core.SimpleMockConstant;
 import top.moxingwang.simplemock.core.dto.MethodSpiResponseDTO;
 
 import java.lang.reflect.Method;
+import java.util.Map;
 
 public class ThreadTest {
     public static void main(String[] args) {
         System.getProperties().setProperty(SimpleMockConstant.SIMPLE_MOCK_VM_SERVER_URL, "http://localhost:8080/simple-mock/mock/string/");
-        String info = new ThreadTest().getInfo();
-        System.out.println("结果"+info);
+        System.out.println("结果" + JSON.toJSONString(new ThreadTest().getInfo()));
     }
 
-    public String getInfo() {
+    public Map<String, String> getInfo() {
         MethodSpiResponseDTO mockResponse = mock(Thread.currentThread().getStackTrace()[1]);
-        if (mockResponse.getType() == 2) {
-            return;
+        if (2 == mockResponse.getType()) {
+            return JSONObject.parseObject(mockResponse.getResponse().toString().getBytes(), mockResponse.getMethodReturnClass());
         }
 
+
         System.out.println(1);
-        return "OK";
-//        return 1;
+        return null;
     }
 
     public MethodSpiResponseDTO mock(StackTraceElement stackTraceElement) {
@@ -39,27 +41,19 @@ public class ThreadTest {
                     if ("void".equals(returnMethodName)) {
                         responseDTO.setType(1);
                         return responseDTO;
-                    } else if ("int".equals(returnMethodName) || "java.lang.Integer".equals(returnMethodName)) {
-                        responseDTO.setType(1);
-                        return responseDTO;
-                    } else if ("int".equals(returnMethodName) || "java.lang.Integer".equals(returnMethodName)) {
-                        responseDTO.setType(1);
-                        return responseDTO;
-                    } else if ("int".equals(returnMethodName) || "java.lang.Integer".equals(returnMethodName)) {
-                        responseDTO.setType(1);
-                        return responseDTO;
-                    } else if ("int".equals(returnMethodName) || "java.lang.Integer".equals(returnMethodName)) {
-                        responseDTO.setType(1);
-                        return responseDTO;
-                    } else if ("int".equals(returnMethodName) || "java.lang.Integer".equals(returnMethodName)) {
-                        responseDTO.setType(1);
-                        return responseDTO;
-                    }else if ("java.lang.String".equals(returnMethodName)) {
-                        responseDTO.setType(1);
+                    }
+                    if (String.class.getName().equals(returnMethodName)) {
+                        responseDTO.setType(2);
+                        responseDTO.setMethodReturnClass(String.class);
                         responseDTO.setResponse(str);
                         return responseDTO;
                     }
-                    System.out.println(method.getName());
+
+                    responseDTO.setType(2);
+
+                    responseDTO.setMethodReturnClass(method.getReturnType());
+                    responseDTO.setResponse(str);
+                    return responseDTO;
                 }
             }
             System.out.println(1);
