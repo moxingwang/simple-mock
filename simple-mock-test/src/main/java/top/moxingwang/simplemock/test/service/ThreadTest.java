@@ -16,13 +16,11 @@ public class ThreadTest {
 
     //Object
     public Map<String, String> getInfo() {
-        if (null != System.getProperty(top.moxingwang.simplemock.core.SimpleMockConstant.SIMPLE_MOCK_VM_SERVER_URL)) {
-            MethodSpiResponseDTO mockResponse = MockApi.getMockData(Thread.currentThread().getStackTrace()[1]);
-            String response = mockResponse.getResponse();
-            if (null != response) {
-                return JSONObject.parseObject(response.getBytes(), mockResponse.getMethodReturnClass());
-            }
+        MethodSpiResponseDTO mockResponse = MockApi.getMockData(Thread.currentThread().getStackTrace()[1]);
+        if (mockResponse.isMocked()) {
+            return JSONObject.parseObject(mockResponse.getResponse().getBytes(), mockResponse.getMethodReturnClass());
         }
+
         return null;
     }
 

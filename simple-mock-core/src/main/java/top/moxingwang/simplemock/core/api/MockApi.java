@@ -1,5 +1,6 @@
 package top.moxingwang.simplemock.core.api;
 
+import org.apache.commons.codec.binary.StringUtils;
 import top.moxingwang.simplemock.core.SimpleMockConstant;
 import top.moxingwang.simplemock.core.dto.MethodSpiResponseDTO;
 
@@ -8,8 +9,12 @@ import java.lang.reflect.Method;
 public class MockApi {
 
     public static MethodSpiResponseDTO getMockData(StackTraceElement stackTraceElement) {
-        MethodSpiResponseDTO responseDTO = new MethodSpiResponseDTO();
+        MethodSpiResponseDTO responseDTO = new MethodSpiResponseDTO(false);
         try {
+            if (null == System.getProperty(top.moxingwang.simplemock.core.SimpleMockConstant.SIMPLE_MOCK_VM_SERVER_URL)) {
+                responseDTO.setMocked(false);
+                return responseDTO;
+            }
             Class cl = Class.forName(stackTraceElement.getClassName());
             for (Method method : cl.getMethods()) {
                 if (method.getName().equals(stackTraceElement.getMethodName())) {
@@ -18,8 +23,12 @@ public class MockApi {
                     String str = org.apache.http.util.EntityUtils.toString(org.apache.http.impl.client.HttpClients.createDefault().execute(new org.apache.http.client.methods.HttpGet(mockUrl)).getEntity(), "UTF-8");
 
                     responseDTO.setMethodReturnClass(method.getReturnType());
-                    responseDTO.setResponse(str);
-                    return responseDTO;
+
+                    if (null != str && str.length() > 0) {
+                        responseDTO.setResponse(str);
+                        responseDTO.setMocked(true);
+                    }
+
                 }
             }
         } catch (Exception e) {
