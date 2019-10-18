@@ -67,10 +67,11 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
     @Override
     public MethodVisitor visitMethod(int access, String name, String descriptor, String signature,
                                      String[] exceptions) {
-        System.out.println("访问方法"+name+descriptor+isMockAnnotationType);
         MethodVisitor mv = cv.visitMethod(access, name, descriptor, signature, exceptions);
 
         if (isMockAnnotationType && !isInterface && mv != null && !name.equals("<init>") && !name.equals("<clinit>")) {
+            System.out.println("访问方法开始"+name+descriptor+isMockAnnotationType);
+
             methodName = name;
             EnhancerMethodAdapter at = new EnhancerMethodAdapter(mv, access, name, descriptor);
             return at;
@@ -81,6 +82,8 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
 
     public void visitEnd() {
         if (isMockAnnotationType && !isInterface) {
+            System.out.println("访问方法结束"+isMockAnnotationType);
+
             FieldVisitor fv = cv.visitField(acc, filedName, "Ljava/lang/String;", null, owner);
             if (fv != null) {
                 fv.visitEnd();
