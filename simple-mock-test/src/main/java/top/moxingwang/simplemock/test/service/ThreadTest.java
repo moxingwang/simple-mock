@@ -3,6 +3,7 @@ package top.moxingwang.simplemock.test.service;
 import top.moxingwang.simplemock.core.api.MockApi;
 import top.moxingwang.simplemock.core.dto.MethodSpiResponseDTO;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class ThreadTest {
@@ -14,7 +15,9 @@ public class ThreadTest {
             return mockResponse.getObject(mockResponse);
         }
 
-        return null;
+
+        System.out.println("AAAAAAAAAA");
+        return new HashMap<>();
     }
 
 
