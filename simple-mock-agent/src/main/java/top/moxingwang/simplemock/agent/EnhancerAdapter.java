@@ -42,7 +42,7 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
             isMockAnnotationType = true;
         }
 
-        if (this.api < ASM6) {
+        if (this.api < ASM7) {
             throw new UnsupportedOperationException("This feature requires ASM6");
         } else {
             return this.cv != null ? this.cv.visitTypeAnnotation(typeRef, typePath, descriptor, visible) : null;
