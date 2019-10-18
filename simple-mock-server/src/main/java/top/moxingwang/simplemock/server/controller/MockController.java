@@ -12,6 +12,7 @@ public class MockController {
     @GetMapping("/string/{methodName}")
     public String mock(@PathVariable(value = "methodName") String methodName) {
 
+        System.out.println("mock 服务被调用到");
         String content = "{\n" +
                 "  \"afterSaleStatus\": 0,\n" +
                 "  \"agreedDeliveryDate\": 1571068800000,\n" +
