@@ -34,20 +34,20 @@ public class EnhancerMethodAdapter extends AdviceAdapter {
         mv.visitVarInsn(ALOAD, 1);
         mv.visitMethodInsn(INVOKEVIRTUAL, "top/moxingwang/simplemock/core/dto/MethodSpiResponseDTO", "isMocked", "()Z", false);
         Label L2 = null;
-        mv.visitJumpInsn(IFEQ,L2);
+//        mv.visitJumpInsn(IFEQ,L2);
 
 
-        Label L3 = new Label();
-        mv.visitVarInsn(ALOAD, 1);
-        mv.visitInsn(POP);
-        mv.visitVarInsn(ALOAD, 1);
-        mv.visitMethodInsn(INVOKESTATIC, "top/moxingwang/simplemock/core/dto/MethodSpiResponseDTO", "getObject", "(Ltop/moxingwang/simplemock/core/dto/MethodSpiResponseDTO;)Ljava/lang/Object;", false);
-        mv.visitTypeInsn(CHECKCAST,"java/util/Map");
-        mv.visitInsn(ARETURN);
-
-        L2 = new Label();
-        Object[] F_APPEND_OBJECT = {"top/moxingwang/simplemock/core/dto/MethodSpiResponseDTO"};
-        mv.visitFrame(F_APPEND, 0, F_APPEND_OBJECT, 0, null);
+//        Label L3 = new Label();
+//        mv.visitVarInsn(ALOAD, 1);
+//        mv.visitInsn(POP);
+//        mv.visitVarInsn(ALOAD, 1);
+//        mv.visitMethodInsn(INVOKESTATIC, "top/moxingwang/simplemock/core/dto/MethodSpiResponseDTO", "getObject", "(Ltop/moxingwang/simplemock/core/dto/MethodSpiResponseDTO;)Ljava/lang/Object;", false);
+//        mv.visitTypeInsn(CHECKCAST,"java/util/Map");
+//        mv.visitInsn(ARETURN);
+//
+//        L2 = new Label();
+//        Object[] F_APPEND_OBJECT = {"top/moxingwang/simplemock/core/dto/MethodSpiResponseDTO"};
+//        mv.visitFrame(F_APPEND, 0, F_APPEND_OBJECT, 0, null);
 
 
 
