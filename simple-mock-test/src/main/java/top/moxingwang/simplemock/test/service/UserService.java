@@ -3,10 +3,12 @@ package top.moxingwang.simplemock.test.service;
 
 import top.moxingwang.simplemock.core.annotation.SimpleMock;
 
-@SimpleMock("hahahahhah")
+import java.util.Map;
+
+@SimpleMock
 public class UserService {
-    public String userInfo() {
+    public Map<String,String> userInfo() {
         System.out.println("user info method------------------");
-        return "OK";
+        return null;
     }
 }

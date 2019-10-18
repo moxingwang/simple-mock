@@ -9,6 +9,7 @@ import java.lang.reflect.Method;
 public class MockApi {
 
     public static MethodSpiResponseDTO getMockData(StackTraceElement stackTraceElement) {
+        System.out.println("调用到mock");
         MethodSpiResponseDTO responseDTO = new MethodSpiResponseDTO(false);
         try {
             if (null == System.getProperty(top.moxingwang.simplemock.core.SimpleMockConstant.SIMPLE_MOCK_VM_SERVER_URL)) {
