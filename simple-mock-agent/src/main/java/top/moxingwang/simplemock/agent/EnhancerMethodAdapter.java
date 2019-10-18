@@ -4,8 +4,6 @@ package top.moxingwang.simplemock.agent;
 import org.objectweb.asm.Label;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.commons.AdviceAdapter;
-import top.moxingwang.simplemock.core.api.MockApi;
-import top.moxingwang.simplemock.core.dto.MethodSpiResponseDTO;
 
 public class EnhancerMethodAdapter extends AdviceAdapter {
 
@@ -22,15 +20,6 @@ public class EnhancerMethodAdapter extends AdviceAdapter {
      */
     @Override
     protected void onMethodEnter() {
-        System.out.println("onMethodEnter开始调用方法");
-//        MethodSpiResponseDTO mockResponse = MockApi.getMockData(Thread.currentThread().getStackTrace()[1]);
-
-
-        mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
-        mv.visitLdcInsn("method : " + name + " 被执行invoke start...");
-        mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false);
-
-
         Label L0 = new Label();
         mv.visitMethodInsn(INVOKESTATIC, "java/lang/Thread","currentThread", "()Ljava/lang/Thread;", false);
         mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Thread", "getStackTrace", "()[Ljava/lang/StackTraceElement;", false);
@@ -39,7 +28,7 @@ public class EnhancerMethodAdapter extends AdviceAdapter {
         mv.visitMethodInsn(INVOKESTATIC, "top/moxingwang/simplemock/core/api/MockApi", "getMockData", "(Ljava/lang/StackTraceElement;)Ltop/moxingwang/simplemock/core/dto/MethodSpiResponseDTO;", false);
         mv.visitVarInsn(ASTORE,1);
 
-        Label L1 = new Label();
+        /*Label L1 = new Label();
         mv.visitVarInsn(ALOAD, 1);
         mv.visitMethodInsn(INVOKEVIRTUAL, "top/moxingwang/simplemock/core/dto/MethodSpiResponseDTO", "isMocked", "()Z", false);
 
@@ -68,7 +57,7 @@ public class EnhancerMethodAdapter extends AdviceAdapter {
         Label L4 = new Label();
         mv.visitLocalVariable("this","Ltop/moxingwang/simplemock/test/service/ThreadTest;",null,L0,L4,0);
         mv.visitLocalVariable("mockResponse","Ltop/moxingwang/simplemock/core/dto/MethodSpiResponseDTO;",null,L0,L4,1);
-
+*/
 
 
 
