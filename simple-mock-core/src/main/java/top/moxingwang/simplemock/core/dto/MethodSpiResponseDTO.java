@@ -1,12 +1,20 @@
 package top.moxingwang.simplemock.core.dto;
 
-import java.io.Serializable;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.parser.Feature;
+import com.alibaba.fastjson.util.IOUtils;
 
-public class MethodSpiResponseDTO<T> implements Serializable {
+import javax.swing.*;
+import java.io.Serializable;
+import java.lang.reflect.Type;
+import java.nio.charset.Charset;
+
+public class MethodSpiResponseDTO implements Serializable {
 
     private boolean mocked = false;
     private String response;
     private Class methodReturnClass;
+
 
     public MethodSpiResponseDTO() {
     }
@@ -14,6 +22,12 @@ public class MethodSpiResponseDTO<T> implements Serializable {
     public MethodSpiResponseDTO(boolean mocked) {
         this.mocked = mocked;
     }
+
+    public static  <T> T getObject(MethodSpiResponseDTO methodSpiResponseDTO) {
+        return JSONObject.parseObject(methodSpiResponseDTO.getResponse().getBytes(), methodSpiResponseDTO.getMethodReturnClass());
+    }
+
+
 
     public boolean isMocked() {
         return mocked;

@@ -21,8 +21,38 @@ public class EnhancerMethodAdapter extends AdviceAdapter {
     @Override
     protected void onMethodEnter() {
         // 前置逻辑 => System.out.println("method : " + name + " invoke start...");
-        Label label = new Label();
-        mv.visitLineNumber(1,label);
+        Label L0 = new Label();
+        mv.visitMethodInsn(INVOKESTATIC, "java/lang/Thread","currentThread", "()Ljava/lang/Thread;", false);
+        mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Thread", "getStackTrace", "()[Ljava/lang/StackTraceElement;", false);
+        mv.visitInsn(ICONST_1);
+        mv.visitInsn(AALOAD);
+        mv.visitMethodInsn(INVOKESTATIC, "top/moxingwang/simplemock/core/api/MockApi", "getMockData", "(Ljava/lang/StackTraceElement;)Ltop/moxingwang/simplemock/core/dto/MethodSpiResponseDTO;", false);
+        mv.visitVarInsn(ASTORE,1);
+
+        Label L1 = new Label();
+        mv.visitVarInsn(ALOAD, 1);
+        mv.visitMethodInsn(INVOKEVIRTUAL, "top/moxingwang/simplemock/core/dto/MethodSpiResponseDTO", "isMocked", "()Z", false);
+
+        Label L2 = new Label();
+        mv.visitJumpInsn(IFEQ,L2);
+
+
+        Label L3 = new Label();
+        mv.visitVarInsn(ALOAD, 1);
+        mv.visitMethodInsn(INVOKEVIRTUAL, "top/moxingwang/simplemock/core/dto/MethodSpiResponseDTO", "getResponse", "()Ljava/lang/String;", false);
+        mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/String", "getBytes", "()[B", false);
+        mv.visitVarInsn(ALOAD, 1);
+        mv.visitMethodInsn(INVOKEVIRTUAL, "top/moxingwang/simplemock/core/dto/MethodSpiResponseDTO", "getMethodReturnClass", "()Ljava/lang/Class;", false);
+        mv.visitInsn(ICONST_0);
+        mv.visitTypeInsn(ANEWARRAY,"com/alibaba/fastjson/parser/Feature");
+        mv.visitMethodInsn(INVOKESTATIC, "com/alibaba/fastjson/JSONObject", "parseObject", "([BLjava/lang/reflect/Type;[Lcom/alibaba/fastjson/parser/Feature;)Ljava/lang/Object;", false);
+        mv.visitTypeInsn(CHECKCAST,"java/util/Map");
+        mv.visitInsn(ARETURN);
+        mv.visitFrame(F_SAME, 0, null, 0, null);
+
+
+
+
 //        mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
 //        mv.visitLocalVariable();
 //        mv.visitLdcInsn("method : " + name + " invoke start...");
@@ -62,11 +92,6 @@ public class EnhancerMethodAdapter extends AdviceAdapter {
 //        mv.visitVarInsn(ASTORE, 1);
 //        mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/IOException", "printStackTrace", "()V",false);
 //        mv.visitFrame(F_SAME, 0, null, 0, null);
-
-
-
-
-
 
 
     }
