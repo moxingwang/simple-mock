@@ -13,6 +13,9 @@ public class AgentTransformer implements ClassFileTransformer {
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
                             ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
         try {
+            if (null != className && !className.startsWith("top/moxingwang/simplemock/test")) {
+                return null;
+            }
             ClassReader cr = new ClassReader(className);
             ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS);
             EnhancerAdapter enhancerAdapter = new EnhancerAdapter(cw);

@@ -26,7 +26,7 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
     }
 
     public AnnotationVisitor visitAnnotation(String descriptor, boolean visible) {
-        System.out.println("访问注解"+descriptor);
+        System.out.println("访问注解1"+descriptor);
 
         System.out.println(descriptor);
 
@@ -37,7 +37,7 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
     }
 
     public AnnotationVisitor visitTypeAnnotation(int typeRef, TypePath typePath, String descriptor, boolean visible) {
-        System.out.println("访问注解"+descriptor);
+        System.out.println("访问注解2"+descriptor);
         if (descriptor.contains(SimpleMock.class.toString().replace(".","/").replace("interface ",""))) {
             isMockAnnotationType = true;
         }
@@ -56,13 +56,7 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
         isInterface = (access & ACC_INTERFACE) != 0;
     }
 
-    @Override
-    public FieldVisitor visitField(int access, String name, String descriptor, String signature, Object value) {
-        if (name.equals(filedName)) {
-            isPresent = true;
-        }
-        return super.visitField(access, name, descriptor, signature, value);
-    }
+
 
     @Override
     public MethodVisitor visitMethod(int access, String name, String descriptor, String signature,
@@ -80,17 +74,6 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
         return mv;
     }
 
-    public void visitEnd() {
-        if (isMockAnnotationType && !isInterface) {
-            System.out.println("访问方法结束"+isMockAnnotationType);
-
-            FieldVisitor fv = cv.visitField(acc, filedName, "Ljava/lang/String;", null, owner);
-            if (fv != null) {
-                fv.visitEnd();
-            }
-        }
-        cv.visitEnd();
-    }
 
 
 }
