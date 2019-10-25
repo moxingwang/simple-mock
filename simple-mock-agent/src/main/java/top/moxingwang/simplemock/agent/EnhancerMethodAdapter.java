@@ -20,38 +20,35 @@ public class EnhancerMethodAdapter extends AdviceAdapter {
      */
     @Override
     protected void onMethodEnter() {
-        Label L0 = new Label();
-        mv.visitMethodInsn(INVOKESTATIC, "java/lang/Thread","currentThread", "()Ljava/lang/Thread;", false);
+        Label l0 = new Label();
+        mv.visitLabel(l0);
+        mv.visitLineNumber(13, l0);
+        mv.visitMethodInsn(INVOKESTATIC, "java/lang/Thread", "currentThread", "()Ljava/lang/Thread;", false);
         mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Thread", "getStackTrace", "()[Ljava/lang/StackTraceElement;", false);
         mv.visitInsn(ICONST_1);
         mv.visitInsn(AALOAD);
         mv.visitMethodInsn(INVOKESTATIC, "top/moxingwang/simplemock/core/api/MockApi", "getMockData", "(Ljava/lang/StackTraceElement;)Ltop/moxingwang/simplemock/core/dto/MethodSpiResponseDTO;", false);
-        mv.visitVarInsn(ASTORE,1);
-
-
-
-        Label L1 = new Label();
+        mv.visitVarInsn(ASTORE, 1);
+        Label l1 = new Label();
+        mv.visitLabel(l1);
+        mv.visitLineNumber(14, l1);
         mv.visitVarInsn(ALOAD, 1);
         mv.visitMethodInsn(INVOKEVIRTUAL, "top/moxingwang/simplemock/core/dto/MethodSpiResponseDTO", "isMocked", "()Z", false);
-        Label L2 = null;
-//        mv.visitJumpInsn(IFEQ,L2);
-
-
-//        Label L3 = new Label();
-//        mv.visitVarInsn(ALOAD, 1);
-//        mv.visitInsn(POP);
-//        mv.visitVarInsn(ALOAD, 1);
-//        mv.visitMethodInsn(INVOKESTATIC, "top/moxingwang/simplemock/core/dto/MethodSpiResponseDTO", "getObject", "(Ltop/moxingwang/simplemock/core/dto/MethodSpiResponseDTO;)Ljava/lang/Object;", false);
-//        mv.visitTypeInsn(CHECKCAST,"java/util/Map");
-//        mv.visitInsn(ARETURN);
-//
-//        L2 = new Label();
-//        Object[] F_APPEND_OBJECT = {"top/moxingwang/simplemock/core/dto/MethodSpiResponseDTO"};
-//        mv.visitFrame(F_APPEND, 0, F_APPEND_OBJECT, 0, null);
-
-
-
-
+        Label l2 = new Label();
+        mv.visitJumpInsn(IFEQ, l2);
+        Label l3 = new Label();
+        mv.visitLabel(l3);
+        mv.visitLineNumber(15, l3);
+        mv.visitVarInsn(ALOAD, 1);
+        mv.visitInsn(POP);
+        mv.visitVarInsn(ALOAD, 1);
+        mv.visitMethodInsn(INVOKESTATIC, "top/moxingwang/simplemock/core/dto/MethodSpiResponseDTO", "getObject", "(Ltop/moxingwang/simplemock/core/dto/MethodSpiResponseDTO;)Ljava/lang/Object;", false);
+        mv.visitTypeInsn(CHECKCAST, "java/util/Map");
+        mv.visitInsn(ARETURN);
+        mv.visitLabel(l2);
+        mv.visitLineNumber(19, l2);
+        mv.visitFrame(F_APPEND, 1, new Object[]{"top/moxingwang/simplemock/core/dto/MethodSpiResponseDTO"}, 0, null);
+        mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
     }
 
     /**
