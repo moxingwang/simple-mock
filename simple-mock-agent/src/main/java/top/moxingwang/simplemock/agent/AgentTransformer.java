@@ -5,17 +5,22 @@ import org.objectweb.asm.ClassWriter;
 
 import java.io.IOException;
 import java.lang.instrument.ClassFileTransformer;
-import java.lang.instrument.IllegalClassFormatException;
 import java.security.ProtectionDomain;
 
 public class AgentTransformer implements ClassFileTransformer {
     @Override
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
-                            ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
+                            ProtectionDomain protectionDomain, byte[] classfileBuffer) {
         try {
-            if (null != className && !className.startsWith("top/moxingwang/simplemock/test")) {
+            if (className == null || loader == null) {
                 return null;
             }
+
+            String packageName = System.getProperty(top.moxingwang.simplemock.core.SimpleMockConstant.SIMPLE_MOCK_VM_PACKAGE_NAME);
+            if (packageName == null || packageName.trim().length() <= 0 || !className.startsWith(packageName)) {
+                return null;
+            }
+
             ClassReader cr = new ClassReader(className);
             ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS);
             EnhancerAdapter enhancerAdapter = new EnhancerAdapter(cw);
