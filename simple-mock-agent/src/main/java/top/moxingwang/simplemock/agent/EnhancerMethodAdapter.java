@@ -50,18 +50,4 @@ public class EnhancerMethodAdapter extends AdviceAdapter {
         mv.visitFrame(F_APPEND, 1, new Object[]{"top/moxingwang/simplemock/core/dto/MethodSpiResponseDTO"}, 0, null);
         mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
     }
-
-    /**
-     * 方法后置
-     *
-     * @param opcode
-     */
-    @Override
-    protected void onMethodExit(int opcode) {
-        // 后置逻辑 => System.out.println("method : " + name + " invoke end...");
-        mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
-        mv.visitLdcInsn("method : " + name + " invoke end...");
-        mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false);
-        super.onMethodExit(opcode);
-    }
 }
