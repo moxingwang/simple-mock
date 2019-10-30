@@ -21,4 +21,9 @@ public class UserService {
     public void VoidMethodAdapter() {
         System.out.println("服务未被mock");
     }
+
+    public String StringMethodAdapter() {
+        System.out.println("服务未被mock");
+        return "OK";
+    }
 }

@@ -17,5 +17,9 @@ public class UserServiceTest {
         {
             userService.VoidMethodAdapter();
         }
+
+        {
+            userService.StringMethodAdapter();
+        }
     }
 }
