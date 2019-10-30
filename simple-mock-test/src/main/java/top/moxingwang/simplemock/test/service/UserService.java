@@ -9,7 +9,7 @@ import java.util.Map;
 @SimpleMock
 public class UserService {
 
-    public Map<String, String> userInfo() {
+    public Map<String, String> ObjectMethodAdapter() {
         System.out.println("user info method------------------");
 
         Map<String, String> testMap = new HashMap<>();
@@ -18,7 +18,7 @@ public class UserService {
         return testMap;
     }
 
-    public Map<String, String> userInfo1() {
+    public Map<String, String> VoidMethodAdapter() {
         System.out.println("user info method-111111111111-----------------");
         return null;
     }
