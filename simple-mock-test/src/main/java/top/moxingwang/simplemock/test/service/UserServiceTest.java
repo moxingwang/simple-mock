@@ -8,6 +8,14 @@ public class UserServiceTest {
         System.getProperties().setProperty(SimpleMockConstant.SIMPLE_MOCK_VM_PACKAGE_NAME, "top/moxingwang/simplemock/test");
         System.getProperties().setProperty(SimpleMockConstant.SIMPLE_MOCK_VM_SERVER_URL, "http://localhost:8080/simple-mock/mock/string/");
         UserService userService = new UserService();
-        System.out.println("执行结果：" + JSON.toJSONString(userService.ObjectMethodAdapter()));
+
+
+        {
+            System.out.println("执行结果：" + JSON.toJSONString(userService.ObjectMethodAdapter()));
+        }
+
+        {
+            userService.VoidMethodAdapter();
+        }
     }
 }

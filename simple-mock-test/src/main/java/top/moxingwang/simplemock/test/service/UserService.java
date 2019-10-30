@@ -10,7 +10,7 @@ import java.util.Map;
 public class UserService {
 
     public Map<String, String> ObjectMethodAdapter() {
-        System.out.println("user info method------------------");
+        System.out.println("服务未被mock");
 
         Map<String, String> testMap = new HashMap<>();
         testMap.put("UserService", "UserService测试返回");
@@ -18,8 +18,7 @@ public class UserService {
         return testMap;
     }
 
-    public Map<String, String> VoidMethodAdapter() {
-        System.out.println("user info method-111111111111-----------------");
-        return null;
+    public void VoidMethodAdapter() {
+        System.out.println("服务未被mock");
     }
 }
