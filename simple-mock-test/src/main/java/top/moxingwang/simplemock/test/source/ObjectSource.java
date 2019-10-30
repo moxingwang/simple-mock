@@ -1,4 +1,4 @@
-package top.moxingwang.simplemock.test.service;
+package top.moxingwang.simplemock.test.source;
 
 import top.moxingwang.simplemock.core.api.MockApi;
 import top.moxingwang.simplemock.core.dto.MethodSpiResponseDTO;
@@ -6,7 +6,7 @@ import top.moxingwang.simplemock.core.dto.MethodSpiResponseDTO;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ThreadTest {
+public class ObjectSource {
 
     //ObjectMethodAdapter
     public Map<String, String> ObjectMethodAdapter() {
@@ -20,15 +20,5 @@ public class ThreadTest {
         return new HashMap<>();
     }
 
-    public void VoidMethodAdapter() {
-        MethodSpiResponseDTO mockResponse = MockApi.getMockData(Thread.currentThread().getStackTrace()[1]);
-        if (mockResponse.isMocked()) {
-            return;
-        }
-
-
-        System.out.println("AAAAAAAAAA");
-        return;
-    }
 
 }
