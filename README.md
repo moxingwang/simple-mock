@@ -11,4 +11,5 @@
 -[Understanding how to use visitFrame](https://stackoverflow.com/questions/20391272/understanding-how-to-use-visitframe)
 - [字节码及ASM使用](https://segmentfault.com/a/1190000009956534)
 - [Nov 10, 2018 - Java 动态字节码技术 - 对 Debug 的好奇](https://zhenbianshu.github.io/2018/11/control_jvm_byte_code.html)
+- [深入理解 RPC 之序列化篇 -- 总结篇](https://www.cnkirito.moe/rpc-serialize-2/)
   
