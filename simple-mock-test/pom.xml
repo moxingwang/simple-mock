@@ -14,6 +14,16 @@
             <artifactId>simple-mock-client</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.esotericsoftware</groupId>
+            <artifactId>kryo</artifactId>
+            <version>4.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.chinaredstar</groupId>
+            <artifactId>p-trade-oc-api</artifactId>
+            <version>3.0.04.RELEASE</version>
+        </dependency>
     </dependencies>
 
 
