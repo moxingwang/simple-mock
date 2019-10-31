@@ -13,7 +13,7 @@ public class MockController {
     public String mock(@PathVariable(value = "methodName") String methodName) {
 
         System.out.println("mock 服务被调用到");
-        String content = "{\n" +
+      /*  String content = "{\n" +
                 "  \"afterSaleStatus\": 0,\n" +
                 "  \"agreedDeliveryDate\": 1571068800000,\n" +
                 "  \"canRefund\": 1,\n" +
@@ -41,8 +41,10 @@ public class MockController {
                 "  \"settlementStatus\": 1,\n" +
                 "  \"shopId\": \"148632\",\n" +
                 "  \"totalAmount\": \"1600.00\"\n" +
-                "}";
+                "}";*/
 
+        String content = "{\"@type\":\"com.chinaredstar.ordercenter.api.common.OrderResult\",\"code\":\"200\",\"dataMap\":{\"@type\":\"com.chinaredstar.ordercenter.module.order.Order\",\"coupons\":[],\"invoiceInfos\":[],\"isAdditionReview\":false,\"itemPromotions\":[],\"orderItem\":{\"itemAttributes\":[]},\"orderItems\":[],\"orderStatusVersions\":[],\"payableAmount\":1111110,\"paymentLines\":[],\"priceDefferenceOrders\":[],\"promOrders\":[],\"promotions\":[],\"refoundOrders\":[],\"serialNumber\":\"323232\",\"workers\":[]},\"message\":\"Success\",\"success\":true}";
         return content;
     }
+
 }
