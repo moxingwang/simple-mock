@@ -1,5 +1,7 @@
 基于ASM实现Java method mock
 
+- 可以动态改变mock server
+
 # usage
 - mvn clean package 
 - -javaagent:simple-mock-agent/target/simple-mock-agent-1.0-SNAPSHOT.jar
