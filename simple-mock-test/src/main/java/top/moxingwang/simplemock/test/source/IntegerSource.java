@@ -6,10 +6,10 @@ import top.moxingwang.simplemock.core.dto.MethodSpiResponseDTO;
 public class IntegerSource {
 
 
-    public Integer VoidMethodAdapter() {
+    public int VoidMethodAdapter() {
         MethodSpiResponseDTO mockResponse = MockApi.getMockData(Thread.currentThread().getStackTrace()[1]);
         if (mockResponse.isMocked()) {
-//            if(null == )
+            return Integer.valueOf(mockResponse.getResponse()).intValue();
         }
 
 

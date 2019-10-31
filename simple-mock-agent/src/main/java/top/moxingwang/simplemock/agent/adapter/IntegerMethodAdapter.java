@@ -35,9 +35,14 @@ public class IntegerMethodAdapter extends AdviceAdapter {
         Label l3 = new Label();
         mv.visitLabel(l3);
         mv.visitLineNumber(12, l3);
-        mv.visitInsn(RETURN);
+        mv.visitVarInsn(ALOAD, 1);
+        mv.visitMethodInsn(INVOKEVIRTUAL, "top/moxingwang/simplemock/core/dto/MethodSpiResponseDTO", "getResponse", "()Ljava/lang/String;", false);
+        mv.visitMethodInsn(INVOKESTATIC, "java/lang/Integer", "valueOf", "(Ljava/lang/String;)Ljava/lang/Integer;", false);
+        mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Integer", "intValue", "()I", false);
+        mv.visitInsn(IRETURN);
         mv.visitLabel(l2);
         mv.visitLineNumber(16, l2);
         mv.visitFrame(F_APPEND, 1, new Object[]{"top/moxingwang/simplemock/core/dto/MethodSpiResponseDTO"}, 0, null);
+
     }
 }

@@ -2,6 +2,7 @@ package top.moxingwang.simplemock.agent;
 
 import org.objectweb.asm.*;
 import org.objectweb.asm.commons.AdviceAdapter;
+import top.moxingwang.simplemock.agent.adapter.IntegerMethodAdapter;
 import top.moxingwang.simplemock.agent.adapter.ObjectMethodAdapter;
 import top.moxingwang.simplemock.agent.adapter.VoidMethodAdapter;
 import top.moxingwang.simplemock.core.annotation.SimpleMock;
@@ -72,6 +73,8 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
                 adviceAdapter = new ObjectMethodAdapter(mv, access, name, descriptor, returnClassType);
             } else if (Type.VOID == methodReturnType) {
                 adviceAdapter = new VoidMethodAdapter(mv, access, name, descriptor);
+            } else if (Type.INT == methodReturnType) {
+                adviceAdapter = new IntegerMethodAdapter(mv, access, name, descriptor);
             }
 
             if (null != adviceAdapter) {
