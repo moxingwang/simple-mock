@@ -63,11 +63,13 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
         if (isMockAnnotationType && !isInterface && mv != null && !name.equals("<init>") && !name.equals("<clinit>")) {
             System.out.println("访问方法开始" + name + descriptor + isMockAnnotationType);
             int methodReturnType = Type.getReturnType(descriptor).getSort();
-
+            System.out.println("返回class:" + Type.getReturnType(descriptor).getClassName());
             AdviceAdapter adviceAdapter = null;
 
+            String returnClassType = Type.getReturnType(descriptor).getClassName().replace(".", "/");
+
             if (Type.OBJECT == methodReturnType) {
-                adviceAdapter = new ObjectMethodAdapter(mv, access, name, descriptor);
+                adviceAdapter = new ObjectMethodAdapter(mv, access, name, descriptor, returnClassType);
             } else if (Type.VOID == methodReturnType) {
                 adviceAdapter = new VoidMethodAdapter(mv, access, name, descriptor);
             }

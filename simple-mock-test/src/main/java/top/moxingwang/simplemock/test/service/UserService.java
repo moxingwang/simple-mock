@@ -18,10 +18,10 @@ public class UserService {
         return testMap;
     }
 
-    public void VoidMethodAdapter() {
-        System.out.println("服务未被mock");
-    }
-
+//    public void VoidMethodAdapter() {
+//        System.out.println("服务未被mock");
+//    }
+//
     public String StringMethodAdapter() {
         System.out.println("服务未被mock");
         return "OK";

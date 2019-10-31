@@ -11,15 +11,15 @@ public class UserServiceTest {
 
 
         {
-            System.out.println("执行结果：" + JSON.toJSONString(userService.ObjectMethodAdapter()));
+            System.out.println("map对象测试:" + JSON.toJSONString(userService.ObjectMethodAdapter()));
         }
 
         {
-            userService.VoidMethodAdapter();
+//            userService.VoidMethodAdapter();
         }
 
         {
-            userService.StringMethodAdapter();
+            System.out.println("String对象测试:"+userService.StringMethodAdapter());;
         }
     }
 }

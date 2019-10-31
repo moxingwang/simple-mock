@@ -7,8 +7,11 @@ import org.objectweb.asm.commons.AdviceAdapter;
 
 public class ObjectMethodAdapter extends AdviceAdapter {
 
-    public ObjectMethodAdapter(MethodVisitor mv, int access, String name, String desc) {
+    private String returnClassType;
+
+    public ObjectMethodAdapter(MethodVisitor mv, int access, String name, String desc,String returnClassType) {
         super(ASM7, mv, access, name, desc);
+        this.returnClassType = returnClassType;
     }
 
     /**
@@ -39,7 +42,7 @@ public class ObjectMethodAdapter extends AdviceAdapter {
         mv.visitInsn(POP);
         mv.visitVarInsn(ALOAD, 1);
         mv.visitMethodInsn(INVOKESTATIC, "top/moxingwang/simplemock/core/dto/MethodSpiResponseDTO", "getObject", "(Ltop/moxingwang/simplemock/core/dto/MethodSpiResponseDTO;)Ljava/lang/Object;", false);
-        mv.visitTypeInsn(CHECKCAST, "java/util/Map");
+        mv.visitTypeInsn(CHECKCAST, returnClassType);
         mv.visitInsn(ARETURN);
         mv.visitLabel(l2);
         mv.visitLineNumber(19, l2);
