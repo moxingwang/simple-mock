@@ -3,27 +3,27 @@ package top.moxingwang.simplemock.core.dto;
 import java.io.Serializable;
 
 public class MockDataDTO implements Serializable {
-    /**
-     * 1 return body
-     * 2 void return
-     * 3 return null
-     */
-    private int type;
+
+    private Type type;
     private String body;
+
+    public enum Type {
+        NONE,ReturnBody, VoidReturn, ReturnNull
+    }
 
     public MockDataDTO() {
     }
 
-    public MockDataDTO(int type, String body) {
+    public MockDataDTO(Type type, String body) {
         this.type = type;
         this.body = body;
     }
 
-    public int getType() {
+    public Type getType() {
         return type;
     }
 
-    public void setType(int type) {
+    public void setType(Type type) {
         this.type = type;
     }
 
