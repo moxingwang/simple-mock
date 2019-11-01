@@ -1,4 +1,4 @@
-package top.moxingwang.simplemock.client;
+package top.moxingwang.simplemock.client.serialization;
 
 
 import com.chinaredstar.ordercenter.api.common.OrderResult;
@@ -12,7 +12,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
 
-public class KryoSerialization {
+public class KryoSerializationTest {
 
 
     public byte[] serialize(Object obj) {
@@ -49,7 +49,7 @@ public class KryoSerialization {
         order.setPayableAmount(new BigDecimal("1111110"));
         orderResult.setDataMap(order);
 
-        KryoSerialization fastjsonSerialization = new KryoSerialization();
+        KryoSerializationTest fastjsonSerialization = new KryoSerializationTest();
         byte[] serialize = fastjsonSerialization.serialize(orderResult);
         String temp = new String(serialize);
         OrderResult deserialize = fastjsonSerialization.deserialize(temp.getBytes(), OrderResult.class);
