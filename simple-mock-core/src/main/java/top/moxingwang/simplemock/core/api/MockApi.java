@@ -27,7 +27,6 @@ public final class MockApi {
                     responseDTO.setMethodReturnClass(method.getReturnType());
                     responseDTO.setPrimitive(method.getReturnType().isPrimitive());
 
-
                     responseDTO.getMethodReturnClass().isPrimitive();
 
                     //调用mock server
@@ -36,8 +35,12 @@ public final class MockApi {
 
                     MockDataDTO mockDataDTO = JSON.parseObject(responseStr, MockDataDTO.class);
 
-                    responseDTO.setMocked(true);
-                    responseDTO.setResponse(mockDataDTO.getBody());
+                    if (MockDataDTO.Type.NONE.equals(mockDataDTO.getType())) {
+                        responseDTO.setMocked(false);
+                    } else {
+                        responseDTO.setMocked(true);
+                        responseDTO.setResponse(mockDataDTO.getBody());
+                    }
                 }
             }
         } catch (Exception e) {
