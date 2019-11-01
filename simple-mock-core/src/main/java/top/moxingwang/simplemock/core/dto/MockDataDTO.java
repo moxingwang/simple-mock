@@ -11,6 +11,13 @@ public class MockDataDTO implements Serializable {
     private int type;
     private String body;
 
+    public MockDataDTO() {
+    }
+
+    public MockDataDTO(int type, String body) {
+        this.type = type;
+        this.body = body;
+    }
 
     public int getType() {
         return type;
