@@ -34,15 +34,27 @@ public class FastjsonSerialization {
     }
 
     public static void main(String[] args) throws IOException {
-        OrderResult orderResult = OrderResult.newSuccess();
-        Order order = new Order();
-        order.setSerialNumber("323232");
-        order.setPayableAmount(new BigDecimal("1111110"));
-        orderResult.setDataMap(order);
-        FastjsonSerialization fastjsonSerialization = new FastjsonSerialization();
-        byte[] serialize = fastjsonSerialization.serialize(orderResult);
-        String s = new String(serialize);
-        OrderResult deserialize = fastjsonSerialization.deserialize(s.getBytes(), OrderResult.class);
-        System.out.println(1);
+        {
+            OrderResult orderResult = OrderResult.newSuccess();
+            Order order = new Order();
+            order.setSerialNumber("323232");
+            order.setPayableAmount(new BigDecimal("1111110"));
+            orderResult.setDataMap(order);
+            FastjsonSerialization fastjsonSerialization = new FastjsonSerialization();
+            byte[] serialize = fastjsonSerialization.serialize(orderResult);
+            String s = new String(serialize);
+            OrderResult deserialize = fastjsonSerialization.deserialize(s.getBytes(), OrderResult.class);
+            System.out.println(1);
+        }
+
+        {
+            int[] ints = {21,43,45365,65};
+            FastjsonSerialization fastjsonSerialization = new FastjsonSerialization();
+            byte[] serialize = fastjsonSerialization.serialize(ints);
+            String s = new String(serialize);
+            int[] deserialize = fastjsonSerialization.deserialize(s.getBytes(), int[].class);
+            System.out.println(1);
+
+        }
     }
 }
