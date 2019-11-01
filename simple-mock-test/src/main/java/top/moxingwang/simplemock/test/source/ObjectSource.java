@@ -12,6 +12,9 @@ public class ObjectSource {
     public Map<String, String> ObjectMethodAdapter() {
         MethodSpiResponseDTO mockResponse = MockApi.getMockData(Thread.currentThread().getStackTrace()[1]);
         if (mockResponse.isMocked()) {
+            if (mockResponse.isReturnNull()) {
+                return null;
+            }
             return mockResponse.getObject(mockResponse);
         }
 

@@ -69,6 +69,8 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
 
             String returnClassType = Type.getReturnType(descriptor).getClassName().replace(".", "/");
 
+            System.out.println("分发methodReturnType"+methodReturnType+"returnClassType"+returnClassType);
+
             if (Type.OBJECT == methodReturnType) {
                 adviceAdapter = new ObjectMethodAdapter(mv, access, name, descriptor, returnClassType);
             } else if (Type.VOID == methodReturnType) {
