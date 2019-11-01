@@ -27,7 +27,7 @@ public class MockController {
             mockDataDTO.setBody(StaticMockService.mapMock);
         } else if (methodName.endsWith("testOrderResult")) {
             mockDataDTO.setType(MockDataDTO.Type.ReturnBody);
-            mockDataDTO.setBody(StaticMockService.mapMock);
+            mockDataDTO.setBody(StaticMockService.orderResultMock);
         } else if (methodName.endsWith("testVoid")) {
             mockDataDTO.setType(MockDataDTO.Type.VoidReturn);
         } else if (methodName.endsWith("testInt")) {

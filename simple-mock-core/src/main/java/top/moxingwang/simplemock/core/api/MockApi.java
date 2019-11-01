@@ -26,12 +26,13 @@ public final class MockApi {
                 if (method.getName().equals(stackTraceElement.getMethodName())) {
                     responseDTO.setMethodReturnClass(method.getReturnType());
                     responseDTO.setPrimitive(method.getReturnType().isPrimitive());
-
                     responseDTO.getMethodReturnClass().isPrimitive();
 
                     //调用mock server
                     String mockUrl = System.getProperty(SimpleMockConstant.SIMPLE_MOCK_VM_SERVER_URL) + cl.getName() + "." + method.getName();
                     String responseStr = org.apache.http.util.EntityUtils.toString(org.apache.http.impl.client.HttpClients.createDefault().execute(new org.apache.http.client.methods.HttpGet(mockUrl)).getEntity(), "UTF-8");
+
+                    //todo 全局参数mock报错是否支持继续
 
                     MockDataDTO mockDataDTO = JSON.parseObject(responseStr, MockDataDTO.class);
 
@@ -39,7 +40,14 @@ public final class MockApi {
                         responseDTO.setMocked(false);
                     } else {
                         responseDTO.setMocked(true);
-                        responseDTO.setResponse(mockDataDTO.getBody());
+
+                        if (MockDataDTO.Type.ReturnBody.equals(mockDataDTO.getType())) {
+                            responseDTO.setResponse(mockDataDTO.getBody());
+                        } else if (MockDataDTO.Type.VoidReturn.equals(mockDataDTO.getType())) {
+                            responseDTO.setReturnVoid(true);
+                        } else if (MockDataDTO.Type.ReturnNull.equals(mockDataDTO.getType())) {
+                            responseDTO.setReturnNull(true);
+                        }
                     }
                 }
             }
