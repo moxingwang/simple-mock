@@ -31,7 +31,7 @@ public final class MockApi {
                     responseDTO.getMethodReturnClass().isPrimitive();
 
                     //调用mock server
-                    String mockUrl = System.getProperty(SimpleMockConstant.SIMPLE_MOCK_VM_SERVER_URL) + method.getClass().getName() + "." + method.getName();
+                    String mockUrl = System.getProperty(SimpleMockConstant.SIMPLE_MOCK_VM_SERVER_URL) + cl.getName() + "." + method.getName();
                     String responseStr = org.apache.http.util.EntityUtils.toString(org.apache.http.impl.client.HttpClients.createDefault().execute(new org.apache.http.client.methods.HttpGet(mockUrl)).getEntity(), "UTF-8");
 
                     MockDataDTO mockDataDTO = JSON.parseObject(responseStr, MockDataDTO.class);
