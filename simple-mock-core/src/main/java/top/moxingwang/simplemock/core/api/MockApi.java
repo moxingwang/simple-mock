@@ -1,7 +1,9 @@
 package top.moxingwang.simplemock.core.api;
 
+import com.alibaba.fastjson.JSON;
 import top.moxingwang.simplemock.core.SimpleMockConstant;
 import top.moxingwang.simplemock.core.dto.MethodSpiResponseDTO;
+import top.moxingwang.simplemock.core.dto.MockDataDTO;
 
 import java.lang.reflect.Method;
 
@@ -22,16 +24,17 @@ public final class MockApi {
             Class cl = Class.forName(stackTraceElement.getClassName());
             for (Method method : cl.getMethods()) {
                 if (method.getName().equals(stackTraceElement.getMethodName())) {
+                    responseDTO.setMethodReturnClass(method.getReturnType());
+                    System.out.println(method.getReturnType());
+
                     //调用mock server
                     String mockUrl = System.getProperty(SimpleMockConstant.SIMPLE_MOCK_VM_SERVER_URL) + method.getClass().getName() + "." + method.getName();
-                    String str = org.apache.http.util.EntityUtils.toString(org.apache.http.impl.client.HttpClients.createDefault().execute(new org.apache.http.client.methods.HttpGet(mockUrl)).getEntity(), "UTF-8");
-                    responseDTO.setMethodReturnClass(method.getReturnType());
+                    String responseStr = org.apache.http.util.EntityUtils.toString(org.apache.http.impl.client.HttpClients.createDefault().execute(new org.apache.http.client.methods.HttpGet(mockUrl)).getEntity(), "UTF-8");
 
-                    if (null != str && str.length() > 0) {
-                        responseDTO.setResponse(str);
-                        responseDTO.setMocked(true);
-                    }
+                    MockDataDTO mockDataDTO = JSON.parseObject(responseStr, MockDataDTO.class);
 
+                    responseDTO.setMocked(true);
+                    responseDTO.setResponse(mockDataDTO.getBody());
                 }
             }
         } catch (Exception e) {
