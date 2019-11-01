@@ -1,9 +1,11 @@
 package top.moxingwang.simplemock.server.controller;
 
+import com.alibaba.fastjson.JSON;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import top.moxingwang.simplemock.core.dto.MockDataDTO;
 
 @RestController
 @RequestMapping("/mock")
@@ -44,7 +46,11 @@ public class MockController {
                 "}";*/
 
         String content = "{\"@type\":\"com.chinaredstar.ordercenter.api.common.OrderResult\",\"code\":\"200\",\"dataMap\":{\"@type\":\"com.chinaredstar.ordercenter.module.order.Order\",\"coupons\":[],\"invoiceInfos\":[],\"isAdditionReview\":false,\"itemPromotions\":[],\"orderItem\":{\"itemAttributes\":[]},\"orderItems\":[],\"orderStatusVersions\":[],\"payableAmount\":1111110,\"paymentLines\":[],\"priceDefferenceOrders\":[],\"promOrders\":[],\"promotions\":[],\"refoundOrders\":[],\"serialNumber\":\"323232\",\"workers\":[]},\"message\":\"Success\",\"success\":true}";
-        return content;
+
+        MockDataDTO mockDataDTO = new MockDataDTO();
+        mockDataDTO.setType(1);
+        mockDataDTO.setBody(content);
+        return JSON.toJSONString(methodName);
     }
 
 }

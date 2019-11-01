@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 public class MockDataDTO implements Serializable {
     /**
-     * 0 return body
-     * 1 void return
-     * 2 return null
+     * 1 return body
+     * 2 void return
+     * 3 return null
      */
     private int type;
     private String body;
