@@ -25,7 +25,10 @@ public final class MockApi {
             for (Method method : cl.getMethods()) {
                 if (method.getName().equals(stackTraceElement.getMethodName())) {
                     responseDTO.setMethodReturnClass(method.getReturnType());
-                    System.out.println(method.getReturnType());
+                    responseDTO.setPrimitive(method.getReturnType().isPrimitive());
+
+
+                    responseDTO.getMethodReturnClass().isPrimitive();
 
                     //调用mock server
                     String mockUrl = System.getProperty(SimpleMockConstant.SIMPLE_MOCK_VM_SERVER_URL) + method.getClass().getName() + "." + method.getName();
