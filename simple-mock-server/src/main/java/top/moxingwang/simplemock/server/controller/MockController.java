@@ -30,13 +30,12 @@ public class MockController {
             mockDataDTO.setBody(StaticMockService.mapMock);
         } else if (methodName.endsWith("testVoid")) {
             mockDataDTO.setType(MockDataDTO.Type.VoidReturn);
-            mockDataDTO.setBody(StaticMockService.mapMock);
         } else if (methodName.endsWith("testInt")) {
             mockDataDTO.setType(MockDataDTO.Type.ReturnBody);
-            mockDataDTO.setBody(StaticMockService.mapMock);
+            mockDataDTO.setBody(StaticMockService.intMock);
         } else if (methodName.endsWith("testInteger")) {
             mockDataDTO.setType(MockDataDTO.Type.ReturnBody);
-            mockDataDTO.setBody(StaticMockService.mapMock);
+            mockDataDTO.setBody(StaticMockService.intMock);
         }
 
 
