@@ -1,4 +1,4 @@
-package top.moxingwang.simplemock.client.config;
+package top.moxingwang.simplemock.core.config;
 
 import com.alibaba.fastjson.parser.ParserConfig;
 import top.moxingwang.simplemock.core.SimpleMockConstant;
