@@ -1,6 +1,7 @@
 package top.moxingwang.simplemock.test.mock;
 
 import com.chinaredstar.ordercenter.api.common.OrderResult;
+import com.chinaredstar.ordercenter.dto.common.message.ParticipleWordMessageDTO;
 import top.moxingwang.simplemock.core.annotation.SimpleMock;
 import top.moxingwang.simplemock.test.config.MockConfig;
 
@@ -11,15 +12,9 @@ import java.util.Map;
 
 @SimpleMock
 public class MockForReturnTypeService {
-    public static void main(String[] args) {
-        MockConfig.init();
-
-        MockForReturnTypeService mockService = new MockForReturnTypeService();
-        mockService.testMap();
-    }
 
 
-    public Map<String, String> testMap() {
+    public Map<String, String> testMap(String ... aa) {
         System.out.println("服务未被mock");
 
         Map<String, String> testMap = new HashMap<>();
@@ -27,17 +22,17 @@ public class MockForReturnTypeService {
         return testMap;
     }
 
-    public String testString() {
+    public String testString(ParticipleWordMessageDTO participleWordMessageDTO) {
         System.out.println("服务未被mock");
         return "OK";
     }
 
-    public OrderResult testOrderResult() {
+    public OrderResult testOrderResult(ParticipleWordMessageDTO participleWordMessageDTO) {
         System.out.println("服务未被mock");
         return OrderResult.newSuccess();
     }
 
-    public void testVoid() {
+  /*  public void testVoid() {
         System.out.println("服务未被mock");
     }
 
@@ -65,6 +60,6 @@ public class MockForReturnTypeService {
     public List testArrayList() {
         System.out.println("服务未被mock");
         return new ArrayList();
-    }
+    }*/
 
 }

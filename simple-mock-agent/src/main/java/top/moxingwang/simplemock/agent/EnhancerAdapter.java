@@ -64,6 +64,9 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
             AdviceAdapter adviceAdapter = null;
 
 
+            Type[] argumentTypes = Type.getArgumentTypes(descriptor);
+            int argumentTypeSize = argumentTypes.length + 1;
+
             String returnClassName = Type.getReturnType(descriptor).getClassName();
 
             System.out.println("分发methodReturnType" + methodReturnType + "returnClassType" + returnClassName);
@@ -110,7 +113,7 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
                 if (isPrimitive) {
                     adviceAdapter = new PrimitiveMethodAdapter(mv, access, name, descriptor, returnClass);
                 } else {
-                    adviceAdapter = new ObjectMethodAdapter(mv, access, name, descriptor, returnClass);
+                    adviceAdapter = new ObjectMethodAdapter(mv, access, name, descriptor, returnClass,argumentTypeSize);
                 }
             }
 

@@ -11,16 +11,18 @@ import java.util.Map;
 public class MockForReturnTypeServiceTest {
     public static void main(String[] args) {
         MockConfig.init();
-        MockForReturnTypeService mockService = new MockForReturnTypeService();
+//        MockForReturnTypeService mockService = new MockForReturnTypeService();
+        CommonMessageService commonMessageService = new CommonMessageService();
+        commonMessageService.getOrderResult();
 
-        Map<String, String> map = mockService.testMap();
-        OrderResult orderResult = mockService.testOrderResult();
-        String s = mockService.testString();
-        int i = mockService.testInt();
-        mockService.testVoid();
-        Double aDouble = mockService.testDouble();
-        double testdouble = mockService.testdouble();
-        List list = mockService.testArrayList();
+//        Map<String, String> map = mockService.testMap();
+//        OrderResult orderResult = mockService.testOrderResult(null);
+//        String s = mockService.testString();
+//        int i = mockService.testInt();
+//        mockService.testVoid();
+//        Double aDouble = mockService.testDouble();
+//        double testdouble = mockService.testdouble();
+//        List list = mockService.testArrayList();
         System.out.println("done");
     }
 

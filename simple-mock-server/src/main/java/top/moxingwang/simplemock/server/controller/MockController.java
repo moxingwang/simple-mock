@@ -42,6 +42,9 @@ public class MockController {
         } else if (methodName.endsWith("testArrayList")) {
             mockDataDTO.setType(MockDataDTO.Type.ReturnBody);
             mockDataDTO.setBody(StaticMockService.testArrayList);
+        }else {
+            mockDataDTO.setType(MockDataDTO.Type.ReturnBody);
+            mockDataDTO.setBody(StaticMockService.orderResultMock);
         }
 
 
