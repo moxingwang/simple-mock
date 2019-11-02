@@ -39,9 +39,9 @@ public class MockController {
         } else if (methodName.endsWith("testDouble")) {
             mockDataDTO.setType(MockDataDTO.Type.ReturnBody);
             mockDataDTO.setBody(StaticMockService.doubleMock);
-        } else if (methodName.endsWith("testdouble")) {
+        } else if (methodName.endsWith("testArrayList")) {
             mockDataDTO.setType(MockDataDTO.Type.ReturnBody);
-            mockDataDTO.setBody(StaticMockService.doubleMock);
+            mockDataDTO.setBody(StaticMockService.testArrayList);
         }
 
 

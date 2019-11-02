@@ -4,6 +4,7 @@ import com.chinaredstar.ordercenter.api.common.OrderResult;
 import top.moxingwang.simplemock.core.annotation.SimpleMock;
 import top.moxingwang.simplemock.test.config.MockConfig;
 
+import java.util.List;
 import java.util.Map;
 
 @SimpleMock
@@ -19,6 +20,7 @@ public class MockForReturnTypeServiceTest {
         mockService.testVoid();
         Double aDouble = mockService.testDouble();
         double testdouble = mockService.testdouble();
+        List list = mockService.testArrayList();
         System.out.println("done");
     }
 

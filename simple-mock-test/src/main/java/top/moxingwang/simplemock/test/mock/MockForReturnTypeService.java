@@ -4,7 +4,9 @@ import com.chinaredstar.ordercenter.api.common.OrderResult;
 import top.moxingwang.simplemock.core.annotation.SimpleMock;
 import top.moxingwang.simplemock.test.config.MockConfig;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @SimpleMock
@@ -58,6 +60,11 @@ public class MockForReturnTypeService {
     public double testdouble() {
         System.out.println("服务未被mock");
         return new Double("111");
+    }
+
+    public List testArrayList() {
+        System.out.println("服务未被mock");
+        return new ArrayList();
     }
 
 }
