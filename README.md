@@ -13,7 +13,7 @@
 # Plan
 
 ### 第一阶段
-    - 确定项目目标，项目名称
+    - 确定项目目标，Organization名称（项目放到组织下），项目名称
     - 申请Central - Maven Repository账号，发布第一个1.0.1-SNAPSHOT版本
     - mock client
         - mock参数基于静态config对象配置
