@@ -4,11 +4,8 @@ import com.chinaredstar.ordercenter.api.common.OrderResult;
 import com.chinaredstar.ordercenter.dto.common.message.ParticipleWordMessageDTO;
 import com.chinaredstar.ordercenter.module.order.Order;
 import top.moxingwang.simplemock.core.annotation.SimpleMock;
-import top.moxingwang.simplemock.test.config.MockConfig;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @SimpleMock
@@ -17,7 +14,8 @@ public class MockForReturnTypeService {
     public void testVoid() {
         System.out.println("服务未被mock");
     }
-    public Map<String, String> testMap(String ... aa) {
+
+    public Map<String, String> testMap(String... aa) {
         System.out.println("服务未被mock");
 
         Map<String, String> testMap = new HashMap<>();
