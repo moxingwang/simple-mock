@@ -7,10 +7,6 @@ import top.moxingwang.simplemock.agent.adapter.PrimitiveMethodAdapter;
 import top.moxingwang.simplemock.agent.adapter.VoidMethodAdapter;
 import top.moxingwang.simplemock.core.annotation.SimpleMock;
 
-/**
- * @see https://blog.csdn.net/u014490683/article/details/22745799
- * @see https://zhuanlan.zhihu.com/p/71762514
- */
 
 public class EnhancerAdapter extends ClassVisitor implements Opcodes {
 
