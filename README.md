@@ -7,12 +7,14 @@
 # Quick Start
 
 - mvn clean package 
-- -javaagent:simple-mock-agent/target/simple-mock-agent-1.0-SNAPSHOT.jar
+- -javaagent:simple-mock-agent/target/simple-mock-agent-1.0.1-SNAPSHOT.jar
 
 
 # Plan
 
 ### 第一阶段
+    - 确定项目目标，项目名称
+    - 申请Central - Maven Repository账号，发布第一个1.0.1-SNAPSHOT版本
     - mock client
         - mock参数基于静态config对象配置
     - mock server
