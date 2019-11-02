@@ -19,7 +19,7 @@
         - mock参数基于静态config对象配置
     - mock server
         - mock页面原形设计
-        - 数据存储采用内存存储
+        - 数据存储采用内存存储（抽象存储实现，未来加入文件存储、数据库存储、NoSql存储等等）
         - mock server区分app
         - 页面手动输入mock json
     
