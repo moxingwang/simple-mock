@@ -4,6 +4,8 @@ import com.chinaredstar.ordercenter.api.common.OrderResult;
 import com.chinaredstar.ordercenter.dto.common.message.ParticipleWordMessageDTO;
 import com.chinaredstar.ordercenter.module.order.Order;
 import top.moxingwang.simplemock.core.annotation.SimpleMock;
+import top.moxingwang.simplemock.core.api.MockApi;
+import top.moxingwang.simplemock.core.dto.MethodSpiResponseDTO;
 
 /**
  * @description:
@@ -13,20 +15,28 @@ import top.moxingwang.simplemock.core.annotation.SimpleMock;
 public class CommonMessageService {
 
 
-    public void sendParticipleWord(ParticipleWordMessageDTO participleWordDTO) {
-        return;
+
+
+    public OrderResult<Order> testOrderResult(ParticipleWordMessageDTO participleWordMessageDTO) {
+        System.out.println("服务未被mock");
+        return OrderResult.newSuccess();
+    }
+    public void sendParticipleWord(ParticipleWordMessageDTO participleWordMessageDTO) {
+
     }
 
-    public OrderResult<Order> getOrderResult(){
-        OrderResult orderResult = OrderResult.newSuccess();
+/*    public OrderResult<Order> testOrderResult(){
 
-        orderResult.setMessage("服务未被mock");
-
-        Order order = new Order();
-        order.setSerialNumber("rsddsdsds");
-        order.setMarketId("21312");
-        order.setMarketName("21312");
-        orderResult.setDataMap(order);
-        return orderResult;
-    }
+//
+//        OrderResult orderResult = OrderResult.newSuccess();
+//
+//        orderResult.setMessage("服务未被mock");
+//
+//        Order order = new Order();
+//        order.setSerialNumber("rsddsdsds");
+//        order.setMarketId("21312");
+//        order.setMarketName("21312");
+//        orderResult.setDataMap(order);
+        return null;
+    }*/
 }

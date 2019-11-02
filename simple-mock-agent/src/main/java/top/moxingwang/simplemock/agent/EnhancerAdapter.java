@@ -75,7 +75,7 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
 
 
             if (Type.VOID == methodReturnType) {
-                adviceAdapter = new VoidMethodAdapter(mv, access, name, descriptor);
+                adviceAdapter = new VoidMethodAdapter(mv, access, name, descriptor,argumentTypeSize);
             } else {
                 Class returnClass = null;
 
@@ -111,7 +111,7 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
                 }
 
                 if (isPrimitive) {
-                    adviceAdapter = new PrimitiveMethodAdapter(mv, access, name, descriptor, returnClass);
+                    adviceAdapter = new PrimitiveMethodAdapter(mv, access, name, descriptor, returnClass,argumentTypeSize);
                 } else {
                     adviceAdapter = new ObjectMethodAdapter(mv, access, name, descriptor, returnClass,argumentTypeSize);
                 }

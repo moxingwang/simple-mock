@@ -8,10 +8,12 @@ import org.objectweb.asm.commons.AdviceAdapter;
 public class PrimitiveMethodAdapter extends AdviceAdapter {
 
     private Class returnClass;
+    private int argumentTypeSize;
 
-    public PrimitiveMethodAdapter(MethodVisitor mv, int access, String name, String desc, Class returnClass) {
+    public PrimitiveMethodAdapter(MethodVisitor mv, int access, String name, String desc, Class returnClass,int argumentTypeSize) {
         super(ASM7, mv, access, name, desc);
         this.returnClass = returnClass;
+        this.argumentTypeSize = argumentTypeSize;
     }
 
     /**
@@ -27,20 +29,20 @@ public class PrimitiveMethodAdapter extends AdviceAdapter {
         mv.visitInsn(ICONST_1);
         mv.visitInsn(AALOAD);
         mv.visitMethodInsn(INVOKESTATIC, "top/moxingwang/simplemock/core/api/MockApi", "getMockData", "(Ljava/lang/StackTraceElement;)Ltop/moxingwang/simplemock/core/dto/MethodSpiResponseDTO;", false);
-        mv.visitVarInsn(ASTORE, 1);
+        mv.visitVarInsn(ASTORE, argumentTypeSize);
         Label l1 = new Label();
         mv.visitLabel(l1);
         mv.visitLineNumber(11, l1);
-        mv.visitVarInsn(ALOAD, 1);
+        mv.visitVarInsn(ALOAD, argumentTypeSize);
         mv.visitMethodInsn(INVOKEVIRTUAL, "top/moxingwang/simplemock/core/dto/MethodSpiResponseDTO", "isMocked", "()Z", false);
         Label l2 = new Label();
         mv.visitJumpInsn(IFEQ, l2);
         Label l3 = new Label();
         mv.visitLabel(l3);
         mv.visitLineNumber(12, l3);
-        mv.visitVarInsn(ALOAD, 1);
+        mv.visitVarInsn(ALOAD, argumentTypeSize);
         mv.visitInsn(POP);
-        mv.visitVarInsn(ALOAD, 1);
+        mv.visitVarInsn(ALOAD, argumentTypeSize);
         mv.visitMethodInsn(INVOKESTATIC, "top/moxingwang/simplemock/core/dto/MethodSpiResponseDTO", "getObject", "(Ltop/moxingwang/simplemock/core/dto/MethodSpiResponseDTO;)Ljava/lang/Object;", false);
         String returnClassName = returnClass.getName().replace(".", "/");
         mv.visitTypeInsn(CHECKCAST, returnClassName);

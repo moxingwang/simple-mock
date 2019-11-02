@@ -2,6 +2,7 @@ package top.moxingwang.simplemock.test.mock;
 
 import com.chinaredstar.ordercenter.api.common.OrderResult;
 import com.chinaredstar.ordercenter.dto.common.message.ParticipleWordMessageDTO;
+import com.chinaredstar.ordercenter.module.order.Order;
 import top.moxingwang.simplemock.core.annotation.SimpleMock;
 import top.moxingwang.simplemock.test.config.MockConfig;
 
@@ -13,7 +14,9 @@ import java.util.Map;
 @SimpleMock
 public class MockForReturnTypeService {
 
-
+    public void testVoid() {
+        System.out.println("服务未被mock");
+    }
     public Map<String, String> testMap(String ... aa) {
         System.out.println("服务未被mock");
 
@@ -27,14 +30,13 @@ public class MockForReturnTypeService {
         return "OK";
     }
 
-    public OrderResult testOrderResult(ParticipleWordMessageDTO participleWordMessageDTO) {
+    public OrderResult<Order> testOrderResult(ParticipleWordMessageDTO participleWordMessageDTO) {
         System.out.println("服务未被mock");
         return OrderResult.newSuccess();
     }
 
-  /*  public void testVoid() {
-        System.out.println("服务未被mock");
-    }
+
+  /*
 
 
     public int testInt() {

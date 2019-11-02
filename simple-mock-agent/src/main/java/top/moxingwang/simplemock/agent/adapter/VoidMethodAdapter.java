@@ -7,8 +7,10 @@ import org.objectweb.asm.commons.AdviceAdapter;
 
 public class VoidMethodAdapter extends AdviceAdapter {
 
-    public VoidMethodAdapter(MethodVisitor mv, int access, String name, String desc) {
+    private int argumentTypeSize;
+    public VoidMethodAdapter(MethodVisitor mv, int access, String name, String desc,int argumentTypeSize) {
         super(ASM7, mv, access, name, desc);
+        this.argumentTypeSize = argumentTypeSize;
     }
 
     /**
@@ -24,18 +26,18 @@ public class VoidMethodAdapter extends AdviceAdapter {
         mv.visitInsn(ICONST_1);
         mv.visitInsn(AALOAD);
         mv.visitMethodInsn(INVOKESTATIC, "top/moxingwang/simplemock/core/api/MockApi", "getMockData", "(Ljava/lang/StackTraceElement;)Ltop/moxingwang/simplemock/core/dto/MethodSpiResponseDTO;", false);
-        mv.visitVarInsn(ASTORE, 1);
+        mv.visitVarInsn(ASTORE, argumentTypeSize);
         Label l1 = new Label();
         mv.visitLabel(l1);
         mv.visitLineNumber(11, l1);
-        mv.visitVarInsn(ALOAD, 1);
+        mv.visitVarInsn(ALOAD, argumentTypeSize);
         mv.visitMethodInsn(INVOKEVIRTUAL, "top/moxingwang/simplemock/core/dto/MethodSpiResponseDTO", "isMocked", "()Z", false);
         Label l2 = new Label();
         mv.visitJumpInsn(IFEQ, l2);
         Label l3 = new Label();
         mv.visitLabel(l3);
         mv.visitLineNumber(12, l3);
-        mv.visitVarInsn(ALOAD, 1);
+        mv.visitVarInsn(ALOAD, argumentTypeSize);
         mv.visitMethodInsn(INVOKEVIRTUAL, "top/moxingwang/simplemock/core/dto/MethodSpiResponseDTO", "isReturnVoid", "()Z", false);
         mv.visitJumpInsn(IFEQ, l2);
         Label l4 = new Label();

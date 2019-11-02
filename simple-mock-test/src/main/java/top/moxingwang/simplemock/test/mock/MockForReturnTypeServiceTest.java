@@ -11,9 +11,9 @@ import java.util.Map;
 public class MockForReturnTypeServiceTest {
     public static void main(String[] args) {
         MockConfig.init();
-//        MockForReturnTypeService mockService = new MockForReturnTypeService();
+        MockForReturnTypeService mockService = new MockForReturnTypeService();
         CommonMessageService commonMessageService = new CommonMessageService();
-        commonMessageService.getOrderResult();
+//        commonMessageService.testOrderResult();
 
 //        Map<String, String> map = mockService.testMap();
 //        OrderResult orderResult = mockService.testOrderResult(null);
