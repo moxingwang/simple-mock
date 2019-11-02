@@ -4,13 +4,16 @@
 
 基于ASM实现Java method mock，实现任意Java方法在线Mock
 
-- 可以动态改变mock server
-
 # Quick Start
 
 - mvn clean package 
 - -javaagent:simple-mock-agent/target/simple-mock-agent-1.0-SNAPSHOT.jar
 
+
+# Plan
+### 第一阶段
+### 第二阶段
+### 第三阶段
 
 
 
