@@ -17,6 +17,8 @@ public class MockForReturnTypeServiceTest {
         String s = mockService.testString();
         int i = mockService.testInt();
         mockService.testVoid();
+        Double aDouble = mockService.testDouble();
+        double testdouble = mockService.testdouble();
         System.out.println("done");
     }
 

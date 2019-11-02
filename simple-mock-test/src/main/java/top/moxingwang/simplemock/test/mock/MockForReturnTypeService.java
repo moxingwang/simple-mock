@@ -50,4 +50,14 @@ public class MockForReturnTypeService {
         return 100;
     }
 
+    public Double testDouble() {
+        System.out.println("服务未被mock");
+        return new Double("111");
+    }
+
+    public double testdouble() {
+        System.out.println("服务未被mock");
+        return new Double("111");
+    }
+
 }
