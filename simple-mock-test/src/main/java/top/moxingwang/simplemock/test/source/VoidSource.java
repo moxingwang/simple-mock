@@ -6,7 +6,7 @@ import top.moxingwang.simplemock.core.dto.MethodSpiResponseDTO;
 public class VoidSource {
 
 
-    public void VoidMethodAdapter() {
+    public void createSource() {
         MethodSpiResponseDTO mockResponse = MockApi.getMockData(Thread.currentThread().getStackTrace()[1]);
         if (mockResponse.isMocked()) {
             if (mockResponse.isReturnVoid()) {

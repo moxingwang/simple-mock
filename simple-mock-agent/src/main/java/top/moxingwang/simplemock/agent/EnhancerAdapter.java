@@ -2,9 +2,8 @@ package top.moxingwang.simplemock.agent;
 
 import org.objectweb.asm.*;
 import org.objectweb.asm.commons.AdviceAdapter;
-import top.moxingwang.simplemock.agent.adapter.IntegerMethodAdapter;
-import top.moxingwang.simplemock.agent.adapter.IntegerObjMethodAdapter;
 import top.moxingwang.simplemock.agent.adapter.ObjectMethodAdapter;
+import top.moxingwang.simplemock.agent.adapter.PrimitiveMethodAdapter;
 import top.moxingwang.simplemock.agent.adapter.VoidMethodAdapter;
 import top.moxingwang.simplemock.core.annotation.SimpleMock;
 
@@ -70,73 +69,55 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
 
 
             String returnClassName = Type.getReturnType(descriptor).getClassName();
-            String returnClassNameForASM = returnClassName.replace(".", "/");
 
             System.out.println("分发methodReturnType" + methodReturnType + "returnClassType" + returnClassName);
 
             //byte、short、int、long、float、double、char、boolean 、void 、object 、Array
 
-            if (Type.BYTE == methodReturnType) {
-                if (Byte.class.getName().equals(returnClassName)) {
-                    adviceAdapter = new IntegerObjMethodAdapter(mv, access, name, descriptor);
-                } else {
-                    adviceAdapter = new IntegerMethodAdapter(mv, access, name, descriptor);
-                }
-            } else if (Type.SHORT == methodReturnType) {
-                if (Short.class.getName().equals(returnClassName)) {
-                    adviceAdapter = new IntegerObjMethodAdapter(mv, access, name, descriptor);
-                } else {
-                    adviceAdapter = new IntegerMethodAdapter(mv, access, name, descriptor);
-                }
-            } else if (Type.INT == methodReturnType) {
-                if (Integer.class.getName().equals(returnClassName)) {
-                    adviceAdapter = new IntegerObjMethodAdapter(mv, access, name, descriptor);
-                } else {
-                    adviceAdapter = new IntegerMethodAdapter(mv, access, name, descriptor);
-                }
-            } else if (Type.LONG == methodReturnType) {
-                if (Long.class.getName().equals(returnClassName)) {
-                    adviceAdapter = new IntegerObjMethodAdapter(mv, access, name, descriptor);
-                } else {
-                    adviceAdapter = new IntegerMethodAdapter(mv, access, name, descriptor);
-                }
-            } else if (Type.LONG == methodReturnType) {
-                if (Long.class.getName().equals(returnClassName)) {
-                    adviceAdapter = new IntegerObjMethodAdapter(mv, access, name, descriptor);
-                } else {
-                    adviceAdapter = new IntegerMethodAdapter(mv, access, name, descriptor);
-                }
-            } else if (Type.FLOAT == methodReturnType) {
-                if (Float.class.getName().equals(returnClassName)) {
-                    adviceAdapter = new IntegerObjMethodAdapter(mv, access, name, descriptor);
-                } else {
-                    adviceAdapter = new IntegerMethodAdapter(mv, access, name, descriptor);
-                }
-            } else if (Type.DOUBLE == methodReturnType) {
-                if (Double.class.getName().equals(returnClassName)) {
-                    adviceAdapter = new IntegerObjMethodAdapter(mv, access, name, descriptor);
-                } else {
-                    adviceAdapter = new IntegerMethodAdapter(mv, access, name, descriptor);
-                }
-            } else if (Type.CHAR == methodReturnType) {
-                if (Character.class.getName().equals(returnClassName)) {
-                    adviceAdapter = new IntegerObjMethodAdapter(mv, access, name, descriptor);
-                } else {
-                    adviceAdapter = new IntegerMethodAdapter(mv, access, name, descriptor);
-                }
-            } else if (Type.BOOLEAN == methodReturnType) {
-                if (Boolean.class.getName().equals(returnClassName)) {
-                    adviceAdapter = new IntegerObjMethodAdapter(mv, access, name, descriptor);
-                } else {
-                    adviceAdapter = new IntegerMethodAdapter(mv, access, name, descriptor);
-                }
-            } else if (Type.VOID == methodReturnType) {
+
+            if (Type.VOID == methodReturnType) {
                 adviceAdapter = new VoidMethodAdapter(mv, access, name, descriptor);
-            } else if (Type.OBJECT == methodReturnType) {
-                adviceAdapter = new ObjectMethodAdapter(mv, access, name, descriptor, returnClassNameForASM);
-            } else if (Type.ARRAY == methodReturnType) {
-                adviceAdapter = new ObjectMethodAdapter(mv, access, name, descriptor, returnClassNameForASM);
+            } else {
+                Class returnClass = null;
+
+                boolean isPrimitive = false;
+                try {
+                    String className = Type.getReturnType(descriptor).getClassName();
+                    if (!className.contains(".")) {
+                        isPrimitive = true;
+                    }
+
+                    if (Type.BYTE == methodReturnType) {
+                        returnClass = Byte.class;
+                    } else if (Type.SHORT == methodReturnType) {
+                        returnClass = Short.class;
+                    } else if (Type.INT == methodReturnType) {
+                        returnClass = Integer.class;
+                    } else if (Type.LONG == methodReturnType) {
+                        returnClass = Long.class;
+                    } else if (Type.FLOAT == methodReturnType) {
+                        returnClass = Float.class;
+                    } else if (Type.DOUBLE == methodReturnType) {
+                        returnClass = Double.class;
+                    } else if (Type.CHAR == methodReturnType) {
+                        returnClass = Character.class;
+                    } else if (Type.BOOLEAN == methodReturnType) {
+                        returnClass = Boolean.class;
+                    } else {
+                        returnClass = Class.forName(className);
+                    }
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                    return adviceAdapter;
+                }
+
+                if (isPrimitive) {
+                    adviceAdapter = new PrimitiveMethodAdapter(mv, access, name, descriptor, returnClass);
+                } else {
+                    adviceAdapter = new ObjectMethodAdapter(mv, access, name, descriptor, returnClass);
+                }
             }
+
 
             if (null != adviceAdapter) {
                 return adviceAdapter;

@@ -8,13 +8,9 @@ import java.util.Map;
 
 public class ObjectSource {
 
-    //ObjectMethodAdapter
-    public Map<String, String> ObjectMethodAdapter() {
+    public Map<String, String> createSource() {
         MethodSpiResponseDTO mockResponse = MockApi.getMockData(Thread.currentThread().getStackTrace()[1]);
         if (mockResponse.isMocked()) {
-            if (mockResponse.isReturnNull()) {
-                return null;
-            }
             return mockResponse.getObject(mockResponse);
         }
 
