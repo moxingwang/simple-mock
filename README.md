@@ -16,6 +16,7 @@
     - mock client
         - mock参数基于静态config对象配置
     - mock server
+        - mock页面原形设计
         - 数据存储采用内存存储
         - mock server区分app
         - 页面手动输入mock json
