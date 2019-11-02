@@ -1,4 +1,4 @@
-# Simple-mock: 让MOCK更简单
+# Simple-mock: 让MOCK变得更简单
 
 ## Introduction
 
