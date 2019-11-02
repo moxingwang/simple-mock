@@ -1,10 +1,18 @@
-基于ASM实现Java method mock
+# Simple-mock: 让MOCK更简单
+
+## Introduction
+
+基于ASM实现Java method mock，实现任意Java方法在线Mock
 
 - 可以动态改变mock server
 
-# usage
+# Quick Start
+
 - mvn clean package 
 - -javaagent:simple-mock-agent/target/simple-mock-agent-1.0-SNAPSHOT.jar
+
+
+
 
 
 # reference
