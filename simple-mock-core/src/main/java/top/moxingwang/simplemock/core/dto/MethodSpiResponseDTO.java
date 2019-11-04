@@ -56,6 +56,9 @@ public class MethodSpiResponseDTO implements Serializable {
     }
 
     public boolean isMocked() {
+        if (this.isPrimitive() && this.returnNull) {
+            return false;
+        }
         return mocked;
     }
 

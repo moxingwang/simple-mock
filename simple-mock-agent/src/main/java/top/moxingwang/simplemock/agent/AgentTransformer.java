@@ -3,20 +3,20 @@ package top.moxingwang.simplemock.agent;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 
-import java.io.IOException;
 import java.lang.instrument.ClassFileTransformer;
 import java.security.ProtectionDomain;
 
 public class AgentTransformer implements ClassFileTransformer {
     @Override
-    public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
-                            ProtectionDomain protectionDomain, byte[] classfileBuffer) {
+    public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined, ProtectionDomain protectionDomain, byte[] classFileBuffer) {
         try {
             if (className == null || loader == null) {
                 return null;
             }
 
             String packageName = System.getProperty(top.moxingwang.simplemock.core.SimpleMockConstant.SIMPLE_MOCK_VM_PACKAGE_NAME);
+
+
             if (packageName == null || packageName.trim().length() <= 0 || !className.startsWith(packageName)) {
                 return null;
             }
@@ -28,10 +28,10 @@ public class AgentTransformer implements ClassFileTransformer {
             cr.accept(enhancerAdapter, ClassReader.EXPAND_FRAMES);
 
             return cw.toByteArray();
-        } catch (IOException e) {
-//            System.out.println("异常"+className);
-//            e.printStackTrace();
+        } catch (Exception e) {
+            //e.printStackTrace();
         }
+
         return null;
     }
 }

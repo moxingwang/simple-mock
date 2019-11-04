@@ -6,13 +6,13 @@
 
     <groupId>top.moxingwang.simple-mock</groupId>
     <artifactId>simple-mock-agent</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
 
     <dependencies>
         <dependency>
             <groupId>top.moxingwang.simple-mock</groupId>
             <artifactId>simple-mock-core</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

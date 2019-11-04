@@ -13,7 +13,7 @@
 
     <groupId>top.moxingwang.simple-mock</groupId>
     <artifactId>simple-mock-server</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
 
     <properties>
         <java.version>1.8</java.version>
@@ -35,7 +35,7 @@
         <dependency>
             <groupId>top.moxingwang.simple-mock</groupId>
             <artifactId>simple-mock-core</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0.1-SNAPSHOT</version>
         </dependency>
 
     </dependencies>

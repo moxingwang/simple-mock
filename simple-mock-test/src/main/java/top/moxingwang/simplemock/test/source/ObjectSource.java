@@ -1,5 +1,8 @@
 package top.moxingwang.simplemock.test.source;
 
+import com.chinaredstar.ordercenter.api.common.OrderResult;
+import com.chinaredstar.ordercenter.dto.common.message.ParticipleWordMessageDTO;
+import com.chinaredstar.ordercenter.module.order.Order;
 import top.moxingwang.simplemock.core.api.MockApi;
 import top.moxingwang.simplemock.core.dto.MethodSpiResponseDTO;
 
@@ -8,19 +11,15 @@ import java.util.Map;
 
 public class ObjectSource {
 
-    //ObjectMethodAdapter
-    public Map<String, String> ObjectMethodAdapter() {
+    public OrderResult<Order> createSource( ) {
         MethodSpiResponseDTO mockResponse = MockApi.getMockData(Thread.currentThread().getStackTrace()[1]);
         if (mockResponse.isMocked()) {
-            if (mockResponse.isReturnNull()) {
-                return null;
-            }
             return mockResponse.getObject(mockResponse);
         }
 
 
         System.out.println("AAAAAAAAAA");
-        return new HashMap<>();
+        return null;
     }
 
 

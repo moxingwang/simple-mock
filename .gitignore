@@ -37,7 +37,6 @@ hs_err_pid*
 *.log
 /conf/
 /disconf/
-p-trade-oc.iml
 launch.json
 settings.json
 .factorypath

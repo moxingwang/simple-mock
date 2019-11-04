@@ -1,17 +1,57 @@
-基于ASM实现Java method mock
+# Simple-mock: 让MOCK变得更简单
 
-- 可以动态改变mock server
+## Introduction
 
-# usage
+基于ASM实现Java method mock，实现任意Java方法在线Mock
+
+# Quick Start
+
 - mvn clean package 
-- -javaagent:simple-mock-agent/target/simple-mock-agent-1.0-SNAPSHOT.jar
+- -javaagent:simple-mock-agent/target/simple-mock-agent-1.0.1-SNAPSHOT.jar
 
 
-# reference
-- [如何利用 ASM 实现既有方法的增强？](https://zhuanlan.zhihu.com/p/71762514)
-- [JVM插码之五：Java agent+ASM实战--监控所有方法执行时间](https://www.cnblogs.com/duanxz/p/6090190.html)
--[Understanding how to use visitFrame](https://stackoverflow.com/questions/20391272/understanding-how-to-use-visitframe)
-- [字节码及ASM使用](https://segmentfault.com/a/1190000009956534)
-- [Nov 10, 2018 - Java 动态字节码技术 - 对 Debug 的好奇](https://zhenbianshu.github.io/2018/11/control_jvm_byte_code.html)
-- [深入理解 RPC 之序列化篇 -- 总结篇](https://www.cnkirito.moe/rpc-serialize-2/)
-  
+# Plan
+
+### 第一阶段
+    - 确定项目目标，Organization名称（项目放到组织下），项目名称
+    - 申请Central - Maven Repository账号，发布第一个1.0.1-SNAPSHOT版本
+    - mock client
+        - mock参数基于静态config对象配置
+    - mock server
+        - mock页面原形设计
+        - 数据存储采用内存存储（抽象存储实现，未来加入文件存储、数据库存储、NoSql存储等等）
+        - mock server区分app
+        - 页面手动输入mock json
+    
+### 第二阶段
+    - mock client
+        - mock参数支持jvm参数配置
+        - mock参数支持动态修改
+    - mock server
+        - 数据存储支持文件存储
+        - 支持集成，server可以集成到项目中，随着项目启动而启动，可以简化单独部署的问题
+        
+    - 文档
+
+### 第三阶段
+    - mock client
+        - mock参数接入配置中心
+    - mock server
+        - 数据存储支持MySQL存储
+        - 页面支持动态加载jar
+
+### 第四阶段
+    - mock client
+        - 启动Netty和服务通信
+        - mock client自动汇报方法签名
+        - mock client支持内存存储数据减少和server的通信
+    - mock server
+        - mock server支持推送服务mock
+        - mock server和client实现心跳
+        - mock server mock数据直接放到client内存
+
+
+### 第五阶段
+    - mock server
+        - 支持restclient写法页面直接mock restful接口
+ 

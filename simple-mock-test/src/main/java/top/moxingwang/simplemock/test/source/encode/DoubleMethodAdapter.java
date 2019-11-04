@@ -1,14 +1,17 @@
-package top.moxingwang.simplemock.agent.adapter;
+package top.moxingwang.simplemock.test.source.encode;
 
 
 import org.objectweb.asm.Label;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.commons.AdviceAdapter;
 
-public class IntegerMethodAdapter extends AdviceAdapter {
+public class DoubleMethodAdapter extends AdviceAdapter {
 
-    public IntegerMethodAdapter(MethodVisitor mv, int access, String name, String desc) {
+    private String returnClassType;
+
+    public DoubleMethodAdapter(MethodVisitor mv, int access, String name, String desc, String returnClassType) {
         super(ASM7, mv, access, name, desc);
+        this.returnClassType = returnClassType;
     }
 
     /**
@@ -36,12 +39,14 @@ public class IntegerMethodAdapter extends AdviceAdapter {
         mv.visitLabel(l3);
         mv.visitLineNumber(12, l3);
         mv.visitVarInsn(ALOAD, 1);
-        mv.visitMethodInsn(INVOKEVIRTUAL, "top/moxingwang/simplemock/core/dto/MethodSpiResponseDTO", "getResponse", "()Ljava/lang/String;", false);
-        mv.visitMethodInsn(INVOKESTATIC, "java/lang/Integer", "valueOf", "(Ljava/lang/String;)Ljava/lang/Integer;", false);
-        mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Integer", "intValue", "()I", false);
-        mv.visitInsn(IRETURN);
+        mv.visitInsn(POP);
+        mv.visitVarInsn(ALOAD, 1);
+        mv.visitMethodInsn(INVOKESTATIC, "top/moxingwang/simplemock/core/dto/MethodSpiResponseDTO", "getObject", "(Ltop/moxingwang/simplemock/core/dto/MethodSpiResponseDTO;)Ljava/lang/Object;", false);
+        mv.visitTypeInsn(CHECKCAST, "java/lang/Double");
+        mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Double", "doubleValue", "()D", false);
+        mv.visitInsn(DRETURN);
         mv.visitLabel(l2);
-        mv.visitLineNumber(16, l2);
+        mv.visitLineNumber(15, l2);
         mv.visitFrame(F_APPEND, 1, new Object[]{"top/moxingwang/simplemock/core/dto/MethodSpiResponseDTO"}, 0, null);
 
     }
