@@ -5,3 +5,4 @@
 - [Nov 10, 2018 - Java 动态字节码技术 - 对 Debug 的好奇](https://zhenbianshu.github.io/2018/11/control_jvm_byte_code.html)
 - [深入理解 RPC 之序列化篇 -- 总结篇](https://www.cnkirito.moe/rpc-serialize-2/)
 - [Java Class文件格式access_flags 描述的是当前类（或者接口）的访问修饰符](https://blog.csdn.net/u014490683/article/details/22745799)
+ - [字节码增强技术探索](https://tech.meituan.com/2019/09/05/java-bytecode-enhancement.html)
