@@ -7,3 +7,5 @@
 - [Java Class文件格式access_flags 描述的是当前类（或者接口）的访问修饰符](https://blog.csdn.net/u014490683/article/details/22745799)
 - [字节码增强技术探索](https://tech.meituan.com/2019/09/05/java-bytecode-enhancement.html)
 - [BTrace原理浅析](https://www.rowkey.me/blog/2016/09/20/btrace/)
+- [Java Instrumentation研究之动态植入](http://fengfu.io/2016/04/25/Java-Instrumentation%E7%A0%94%E7%A9%B6-2/)
+- [Java类动态加载（二）——动态加载class文件](https://www.iteye.com/blog/zheng12tian-1495037)

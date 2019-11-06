@@ -2,7 +2,9 @@ package top.moxingwang.simplemock.agent.test;
 
 import top.moxingwang.simplemock.agent.AgentTransformer;
 
-public class Test {
+import java.lang.instrument.ClassFileTransformer;
+
+public final class Test  {
     public static void main(String[] args) {
         {
             UserTest userTest = new UserTest();
