@@ -17,9 +17,9 @@ public class AgentTransformer implements ClassFileTransformer {
             String packageName = System.getProperty(top.moxingwang.simplemock.core.SimpleMockConstant.SIMPLE_MOCK_VM_PACKAGE_NAME);
 
 
-            if (packageName == null || packageName.trim().length() <= 0 || !className.startsWith(packageName)) {
-                return null;
-            }
+//            if (packageName == null || packageName.trim().length() <= 0 || !className.startsWith(packageName)) {
+//                return null;
+//            }
 
             ClassReader cr = new ClassReader(className);
             ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS);
