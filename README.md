@@ -22,6 +22,7 @@
         - 数据存储采用内存存储（抽象存储实现，未来加入文件存储、数据库存储、NoSql存储等等）
         - mock server区分app
         - 页面手动输入mock json
+        - RMI通信
     
 ### 第二阶段
     - mock client
