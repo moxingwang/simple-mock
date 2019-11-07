@@ -9,3 +9,4 @@
 - [BTrace原理浅析](https://www.rowkey.me/blog/2016/09/20/btrace/)
 - [Java Instrumentation研究之动态植入](http://fengfu.io/2016/04/25/Java-Instrumentation%E7%A0%94%E7%A9%B6-2/)
 - [Java类动态加载（二）——动态加载class文件](https://www.iteye.com/blog/zheng12tian-1495037)
+- [未找到代理JAR或没有代理类属性](http://cn.voidcc.com/question/p-ksiryazs-uv.html)

@@ -1,4 +1,6 @@
+
 package top.moxingwang.simplemock.agent.test;
+
 
 import com.sun.tools.attach.AgentInitializationException;
 import com.sun.tools.attach.AgentLoadException;
@@ -11,23 +13,25 @@ import java.io.IOException;
 
 public final class Test {
     public static void main(String[] args) {
+        boolean flag = false;
         while (true) {
-            UserTest userTest = new UserTest();
-            userTest.test();
+
 
             try {
-                Thread.sleep(10000);
+                UserTest userTest = new UserTest();
+                userTest.test();
 
-                {
+                Thread.sleep(100);
+
+                if(!flag){
                     // Attach到被监控的JVM进程上
                     VirtualMachine virtualmachine = null;
                     try {
                         virtualmachine = VirtualMachine.attach(JUtil.getPid());
 
                         // 让JVM加载jmx Agent
-                        String javaHome = virtualmachine.getSystemProperties().getProperty("java.home");
-                        String jmxAgent = javaHome + File.separator + "lib" + File.separator + "management-agent.jar";
-                        virtualmachine.loadAgent(jmxAgent, "com.sun.management.jmxremote");
+                        String jmxAgent = "C:\\workspace\\simple-mock\\simple-mock-agent\\target\\simple-mock-agent-1.0.1-SNAPSHOT.jar";
+                        virtualmachine.loadAgent(jmxAgent);
 
                     } catch (AttachNotSupportedException e) {
                         e.printStackTrace();
@@ -39,7 +43,7 @@ public final class Test {
                         e.printStackTrace();
                     }
 
-
+                    flag = true;
                 }
 
             } catch (InterruptedException e) {
@@ -50,3 +54,4 @@ public final class Test {
 
     }
 }
+
