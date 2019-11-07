@@ -13,7 +13,7 @@
 # Plan
 
 ### 第一阶段
-    - 确定项目目标，Organization名称（项目放到组织下），项目名称
+    - 确定项目目标，Organization名称（项目放到组织下），项目名称,gitpage
     - 申请Central - Maven Repository账号，发布第一个1.0.1-SNAPSHOT版本
     - mock client
         - mock参数基于静态config对象配置
@@ -33,6 +33,13 @@
         - 支持集成，server可以集成到项目中，随着项目启动而启动，可以简化单独部署的问题
         
     - 文档
+        - gitpage
+        - wiki
+    - 设计
+        - logo
+        
+    - 方向
+        - 做大做牛
 
 ### 第三阶段
     - mock client
