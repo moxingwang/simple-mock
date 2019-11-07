@@ -1,4 +1,4 @@
-package top.moxingwang.simplemock.agent.test;
+package top.moxingwang.simplemock.core.test;
 
 public class UserTest {
     public void test(){

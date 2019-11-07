@@ -1,11 +1,12 @@
 
-package top.moxingwang.simplemock.agent.test;
+package top.moxingwang.simplemock.test.agent;
 
 
 import com.sun.tools.attach.AgentInitializationException;
 import com.sun.tools.attach.AgentLoadException;
 import com.sun.tools.attach.AttachNotSupportedException;
 import com.sun.tools.attach.VirtualMachine;
+import top.moxingwang.simplemock.core.test.UserTest;
 import top.moxingwang.simplemock.core.util.JUtil;
 
 import java.io.File;
@@ -21,7 +22,7 @@ public final class Test {
                 UserTest userTest = new UserTest();
                 userTest.test();
 
-                Thread.sleep(100);
+                Thread.sleep(1000);
 
                 if(!flag){
                     // Attach到被监控的JVM进程上

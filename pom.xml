@@ -15,7 +15,7 @@
         <module>simple-mock-agent</module>
         <module>simple-mock-client</module>
         <module>simple-mock-server</module>
-        <module>simple-mock-test</module>
+<!--        <module>simple-mock-test</module>-->
     </modules>
 
 
