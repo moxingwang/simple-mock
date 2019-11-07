@@ -15,7 +15,7 @@
 ### 第一阶段
     - 确定项目目标，Organization名称（项目放到组织下），项目名称,gitpage
     - 申请Central - Maven Repository账号，发布第一个1.0.1-SNAPSHOT版本
-    - mock client
+    - mock agent
         - mock参数基于静态config对象配置
     - mock server
         - mock页面原形设计
@@ -25,7 +25,7 @@
         - RMI通信
     
 ### 第二阶段
-    - mock client
+    - mock agent
         - mock参数支持jvm参数配置
         - mock参数支持动态修改
     - mock server
@@ -42,14 +42,14 @@
         - 做大做牛
 
 ### 第三阶段
-    - mock client
+    - mock agent
         - mock参数接入配置中心
     - mock server
         - 数据存储支持MySQL存储
         - 页面支持动态加载jar
 
 ### 第四阶段
-    - mock client
+    - mock agent
         - 启动Netty和服务通信
         - mock client自动汇报方法签名
         - mock client支持内存存储数据减少和server的通信
