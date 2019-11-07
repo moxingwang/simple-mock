@@ -1,7 +1,10 @@
 package top.moxingwang.simplemock.agent;
 
 
+import top.moxingwang.simplemock.agent.test.UserTest;
+
 import java.lang.instrument.Instrumentation;
+import java.lang.instrument.UnmodifiableClassException;
 
 public class Agent {
 
@@ -16,6 +19,11 @@ public class Agent {
 
         inst.addTransformer(new AgentTransformer());
 
+        try {
+            inst.retransformClasses(UserTest.class);
+        } catch (UnmodifiableClassException e) {
+            e.printStackTrace();
+        }
     }
 
 }
