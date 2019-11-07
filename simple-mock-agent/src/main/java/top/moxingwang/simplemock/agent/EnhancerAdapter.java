@@ -11,7 +11,7 @@ import top.moxingwang.simplemock.core.annotation.SimpleMock;
 public class EnhancerAdapter extends ClassVisitor implements Opcodes {
 
     private boolean isInterface;
-    private boolean isMockAnnotationType = true;
+    private boolean isMockAnnotationType = false;
 
     public EnhancerAdapter(ClassVisitor classVisitor) {
         super(ASM7, classVisitor);
