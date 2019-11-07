@@ -46,7 +46,7 @@
                             <addClasspath>true</addClasspath>
                         </manifest>
                         <manifestEntries>
-<!--                            <Premain-Class>top.moxingwang.simplemock.agent.Agent</Premain-Class>-->
+                            <Premain-Class>top.moxingwang.simplemock.agent.Agent</Premain-Class>
                             <Main-Class>top.moxingwang.simplemock.agent.Agent</Main-Class>
                             <Agent-Class>top.moxingwang.simplemock.agent.Agent</Agent-Class>
                             <Class-Path>tools.jar</Class-Path>
