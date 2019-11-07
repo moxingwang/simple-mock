@@ -1,4 +1,4 @@
-package top.moxingwang.simplemock.core.test;
+package top.moxingwang.simplemock.test.service;
 
 import top.moxingwang.simplemock.core.annotation.SimpleMock;
 

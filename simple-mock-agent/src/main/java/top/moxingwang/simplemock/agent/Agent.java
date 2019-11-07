@@ -1,8 +1,6 @@
 package top.moxingwang.simplemock.agent;
 
 
-import top.moxingwang.simplemock.core.test.UserTest;
-
 import java.lang.instrument.Instrumentation;
 import java.lang.instrument.UnmodifiableClassException;
 
@@ -17,11 +15,13 @@ public class Agent {
     public static void agentmain(String args, Instrumentation inst) {
         System.out.println(" agentmain(String args, Instrumentation inst) ");
 
-        inst.addTransformer(new AgentTransformer(),true);
+        inst.addTransformer(new AgentTransformer(), true);
 
         try {
-            inst.retransformClasses(UserTest.class);
+            inst.retransformClasses(Class.forName(args));
         } catch (UnmodifiableClassException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }

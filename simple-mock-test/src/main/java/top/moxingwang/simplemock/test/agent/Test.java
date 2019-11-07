@@ -6,7 +6,7 @@ import com.sun.tools.attach.AgentInitializationException;
 import com.sun.tools.attach.AgentLoadException;
 import com.sun.tools.attach.AttachNotSupportedException;
 import com.sun.tools.attach.VirtualMachine;
-import top.moxingwang.simplemock.core.test.UserTest;
+import top.moxingwang.simplemock.test.service.UserTest;
 import top.moxingwang.simplemock.core.util.JUtil;
 
 import java.io.File;

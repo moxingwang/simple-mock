@@ -1,6 +1,6 @@
 package top.moxingwang.simplemock.test.agent;
 
-import top.moxingwang.simplemock.core.test.UserTest;
+import top.moxingwang.simplemock.test.service.UserTest;
 
 public class AgentmainMain {
     public static void main(String[] args) throws InterruptedException {
