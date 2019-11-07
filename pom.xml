@@ -18,6 +18,7 @@
         <module>simple-mock-client</module>
         <module>simple-mock-server</module>
         <module>simple-mock-test</module>
+        <module>simple-mock-sample</module>
     </modules>
 
 
