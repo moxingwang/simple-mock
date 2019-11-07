@@ -31,8 +31,12 @@ public final class Test {
 
                         // 让JVM加载jmx Agent
                         String jmxAgent = "C:\\workspace\\simple-mock\\simple-mock-agent\\target\\simple-mock-agent-1.0.1-SNAPSHOT.jar";
-                        virtualmachine.loadAgent(jmxAgent);
+                        String home = virtualmachine.getSystemProperties().getProperty("java.home");
+                        String agent = home + File.separator + "lib" + File.separator
+                                + "management-agent.jar";
 
+                        virtualmachine.loadAgent(jmxAgent);
+                        virtualmachine.detach();
                     } catch (AttachNotSupportedException e) {
                         e.printStackTrace();
                     } catch (IOException e) {
@@ -54,4 +58,3 @@ public final class Test {
 
     }
 }
-
