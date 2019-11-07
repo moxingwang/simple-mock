@@ -5,17 +5,38 @@ import org.objectweb.asm.ClassWriter;
 
 import java.lang.instrument.ClassFileTransformer;
 import java.security.ProtectionDomain;
+import java.util.Objects;
 
 public class AgentTransformer implements ClassFileTransformer {
+    private int agentType;//0 premain 1 agentmain
+    private String targetClassName;
+    private String targetPackageName;
+
+    public AgentTransformer() {
+    }
+
+    public AgentTransformer(int agentType, String targetClassName, String targetPackageName) {
+        this.agentType = agentType;
+        this.targetClassName = targetClassName;
+        this.targetPackageName = targetPackageName;
+    }
+
+
     @Override
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined, ProtectionDomain protectionDomain, byte[] classFileBuffer) {
         try {
-            System.out.println("执行AgentTransformer"+className);
+            System.out.println("执行AgentTransformer"+className+"------targetClassName"+targetClassName);
             if (className == null || loader == null) {
                 return null;
             }
 
-            String packageName = System.getProperty(top.moxingwang.simplemock.core.SimpleMockConstant.SIMPLE_MOCK_VM_PACKAGE_NAME);
+            if (Objects.nonNull(targetClassName)) {
+                if (!Objects.equals(targetClassName.replace(".","/"), className)) {
+                    return null;
+                }
+            }
+
+            String packageName = System.getProperty("SIMPLE_MOCK_VM_PACKAGE_NAME");
 
 
 //            if (packageName == null || packageName.trim().length() <= 0 || !className.startsWith(packageName)) {
