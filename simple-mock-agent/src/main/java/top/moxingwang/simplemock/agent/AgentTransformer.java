@@ -10,7 +10,7 @@ public class AgentTransformer implements ClassFileTransformer {
     @Override
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined, ProtectionDomain protectionDomain, byte[] classFileBuffer) {
         try {
-            System.out.println("执行AgentTransformer");
+            System.out.println("执行AgentTransformer"+className);
             if (className == null || loader == null) {
                 return null;
             }
