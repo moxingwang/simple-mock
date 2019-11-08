@@ -10,11 +10,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.chinaredstar</groupId>
-            <artifactId>p-trade-oc-api</artifactId>
-            <version>3.0.04.RELEASE</version>
-        </dependency>
-        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>

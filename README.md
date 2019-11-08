@@ -63,3 +63,7 @@
     - mock server
         - 支持restclient写法页面直接mock restful接口
  
+
+# 当前问题
+- spring bean
+- 对象被重新加载后，对象属性值没了

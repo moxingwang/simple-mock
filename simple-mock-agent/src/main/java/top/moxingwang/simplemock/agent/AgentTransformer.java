@@ -25,7 +25,6 @@ public class AgentTransformer implements ClassFileTransformer {
     @Override
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined, ProtectionDomain protectionDomain, byte[] classFileBuffer) {
         try {
-            System.out.println("执行AgentTransformer"+className+"------targetClassName"+targetClassName);
             if (className == null || loader == null) {
                 return null;
             }
@@ -35,6 +34,8 @@ public class AgentTransformer implements ClassFileTransformer {
                     return null;
                 }
             }
+
+            System.out.println("最终执行："+className+"------targetClassName："+targetClassName);
 
             String packageName = System.getProperty("SIMPLE_MOCK_VM_PACKAGE_NAME");
 

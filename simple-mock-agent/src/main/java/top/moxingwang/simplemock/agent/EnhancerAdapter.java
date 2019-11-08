@@ -31,23 +31,24 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
                                      String[] exceptions) {
         MethodVisitor mv = cv.visitMethod(access, name, descriptor, signature, exceptions);
 
-        System.err.println("return type: " + Type.getReturnType(descriptor));
-        System.err.println("return type: " + Type.getReturnType(descriptor).getSort());
+        System.out.println("准备访问方法: " + Type.getReturnType(descriptor).getSort() + "--" + name + "--" + descriptor);
 
 
         if (!isInterface && mv != null && !name.equals("<init>") && !name.equals("<clinit>")) {
-            System.out.println("访问方法开始" + name + descriptor);
-            int methodReturnType = Type.getReturnType(descriptor).getSort();
-            System.out.println("返回class:" + Type.getReturnType(descriptor).getClassName());
-            AdviceAdapter adviceAdapter = null;
 
+            int methodReturnType = Type.getReturnType(descriptor).getSort();
+
+            AdviceAdapter adviceAdapter = null;
 
             Type[] argumentTypes = Type.getArgumentTypes(descriptor);
             int argumentTypeSize = argumentTypes.length + 1;
 
             String returnClassName = Type.getReturnType(descriptor).getClassName();
 
-            System.out.println("分发methodReturnType" + methodReturnType + "returnClassType" + returnClassName);
+            System.out.println("真正访问方法: " + Type.getReturnType(descriptor).getSort() + "--" + name + "--" + descriptor + "--" + "返回class:" +
+                    Type.getReturnType(descriptor).getClassName() + "---" + "分发methodReturnType：" + methodReturnType + "returnClassType：" + returnClassName);
+
+
 
             //byte、short、int、long、float、double、char、boolean 、void 、object 、Array
 

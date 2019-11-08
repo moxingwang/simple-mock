@@ -1,8 +1,6 @@
 package top.moxingwang.simplemock.client.serialization;
 
 
-import com.chinaredstar.ordercenter.api.common.OrderResult;
-import com.chinaredstar.ordercenter.module.order.Order;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
@@ -10,7 +8,6 @@ import com.esotericsoftware.kryo.io.Output;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.math.BigDecimal;
 
 public class KryoSerializationTest {
 
@@ -43,7 +40,7 @@ public class KryoSerializationTest {
     };
 
     public static void main(String[] args) throws IOException {
-        OrderResult orderResult = OrderResult.newSuccess();
+/*        OrderResult orderResult = OrderResult.newSuccess();
         Order order = new Order();
         order.setSerialNumber("323232");
         order.setPayableAmount(new BigDecimal("1111110"));
@@ -53,6 +50,6 @@ public class KryoSerializationTest {
         byte[] serialize = fastjsonSerialization.serialize(orderResult);
         String temp = new String(serialize);
         OrderResult deserialize = fastjsonSerialization.deserialize(temp.getBytes(), OrderResult.class);
-        System.out.println(1);
+        System.out.println(1);*/
     }
 }

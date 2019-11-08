@@ -1,11 +1,7 @@
 package top.moxingwang.simplemock.test.mock;
 
-import com.chinaredstar.ordercenter.api.common.OrderResult;
 import top.moxingwang.simplemock.core.annotation.SimpleMock;
 import top.moxingwang.simplemock.core.config.SimpleMockConfig;
-
-import java.util.List;
-import java.util.Map;
 
 @SimpleMock
 public class MockForReturnTypeServiceTest {

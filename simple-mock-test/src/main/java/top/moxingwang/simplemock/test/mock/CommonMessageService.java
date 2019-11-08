@@ -1,11 +1,6 @@
 package top.moxingwang.simplemock.test.mock;
 
-import com.chinaredstar.ordercenter.api.common.OrderResult;
-import com.chinaredstar.ordercenter.dto.common.message.ParticipleWordMessageDTO;
-import com.chinaredstar.ordercenter.module.order.Order;
 import top.moxingwang.simplemock.core.annotation.SimpleMock;
-import top.moxingwang.simplemock.core.api.MockApi;
-import top.moxingwang.simplemock.core.dto.MethodSpiResponseDTO;
 
 /**
  * @description:
@@ -17,13 +12,13 @@ public class CommonMessageService {
 
 
 
-    public OrderResult<Order> testOrderResult(ParticipleWordMessageDTO participleWordMessageDTO) {
+ /*   public OrderResult<Order> testOrderResult(ParticipleWordMessageDTO participleWordMessageDTO) {
         System.out.println("服务未被mock");
         return OrderResult.newSuccess();
     }
     public void sendParticipleWord(ParticipleWordMessageDTO participleWordMessageDTO) {
 
-    }
+    }*/
 
 /*    public OrderResult<Order> testOrderResult(){
 

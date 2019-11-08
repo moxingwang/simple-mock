@@ -11,3 +11,4 @@
 - [Java类动态加载（二）——动态加载class文件](https://www.iteye.com/blog/zheng12tian-1495037)
 - [未找到代理JAR或没有代理类属性](http://cn.voidcc.com/question/p-ksiryazs-uv.html)
 - [探秘 Java 热部署三（Java agent agentmain）](https://www.jianshu.com/p/6096bfe19e41)
+- [Java代理模式的实现方式](https://my.oschina.net/u/1013857/blog/2998280)
